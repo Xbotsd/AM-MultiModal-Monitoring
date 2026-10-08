@@ -1,0 +1,26 @@
+# 数据集和第三方仓库
+data/
+repos/
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter 缓存
+.ipynb_checkpoints/
+
+# 期刊模板和论文文档
+ijem模板.doc
+IJEM项目论文.docx
+References_IJEM.docx
+EPFL记录.txt
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器配置
+.vscode/
+.idea/
