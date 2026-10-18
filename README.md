@@ -1,14 +1,23 @@
 # AM-MultiModal-Monitoring
+**Laser Powder Bed Fusion (LPBF) In-Situ Monitoring System**
 
-Python scripts for multi-modal in-situ monitoring in LPBF/DED: acoustic emission, laser ultrasound, point cloud, Kalman fusion, phase unwrapping, and closed-loop control.
+This repository contains the official code for the paper: "A Unified Kalman Filter Framework with Offline Edge Intelligence for Multi-Modal In-Situ Monitoring in LPBF and DED".
 
-## Requirements
-- Python 3.12
-- numpy, scipy, matplotlib, Pillow, python-docx
+## Project Structure
+- 1_acoustic: Acoustic emission classification (EPFL dataset)
+- 2_laser_ultrasound: Laser ultrasound classification (Cranfield dataset)
+- 3_fusion: Unified Kalman filter multi-modal fusion
+- 4_phase_pointcloud: Phase unwrapping and point cloud defect detection
+- 5_control: Closed-loop control and offline edge diagnosis
+- 6_visualization: Statistical analysis and figure generation
 
-## Data
-- EPFL LPBF acoustic emission dataset: https://zenodo.org/records/10449985
-- Cranfield LIPA dataset: https://doi.org/10.17862/cranfield.rd.15190191
+## Quick Start
+1. Install dependencies:
+   pip install -r requirements.txt
 
-## Usage
-Run with `py -3.12 <script_name>.py` from the project root.
+2. Run a specific module (e.g., acoustic experiment):
+   python CODE/1_acoustic/run_eplf_v12.py
+
+## Datasets
+- EPFL Acoustic Dataset: https://zenodo.org/records/10449883
+- Cranfield LUT Dataset: https://doi.org/10.17862/cranfield.rd.15190191
