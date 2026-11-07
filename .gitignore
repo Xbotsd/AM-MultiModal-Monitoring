@@ -1,16 +1,22 @@
-# Data files
-data/
+# Data files (not committed; see data/README.md)
+data/*
+!data/README.md
 *.npy
 *.mat
 *.rar
+*.zip
+*.dcm
 
 # Outputs
 outputs/
 data_output/
 *.png
 *.tif
+*.tiff
 
 # Python cache
 __pycache__/
 *.pyc
+*.egg-info/
+.pytest_cache/
 .DS_Store

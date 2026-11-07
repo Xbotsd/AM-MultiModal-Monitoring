@@ -1,0 +1,363 @@
+{
+ "generated_by": "tools/scan_stages.py",
+ "n_stages": 28,
+ "modules": {
+  "1_acoustic": "acoustic emission classification",
+  "2_laser_ultrasound": "laser-ultrasound classification",
+  "3_fusion": "multi-modal fusion",
+  "4_phase_pointcloud": "phase unwrapping and point cloud",
+  "5_control": "closed-loop control and edge diagnosis",
+  "6_visualization": "statistics and figures"
+ },
+ "stages": [
+  {
+   "stage": "1_acoustic:run_acoustic_ablation",
+   "script": "CODE/1_acoustic/run_acoustic_ablation.py",
+   "module": "acoustic emission classification",
+   "summary": "声学模块消融实验 - FFT频带版（无pywt依赖）",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/output"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "1_acoustic:run_acoustic_baseline_v2",
+   "script": "CODE/1_acoustic/run_acoustic_baseline_v2.py",
+   "module": "acoustic emission classification",
+   "summary": "声学分类基线对比实验（修复版）",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/output"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "1_acoustic:run_eplf_v12",
+   "script": "CODE/1_acoustic/run_eplf_v12.py",
+   "module": "acoustic emission classification",
+   "summary": "V12 - 集成学习 (KNN + MLP 软投票)",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "1_acoustic:run_stat_cv_acoustic",
+   "script": "CODE/1_acoustic/run_stat_cv_acoustic.py",
+   "module": "acoustic emission classification",
+   "summary": "声学模块 K折交叉验证 + P/R/F1",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/statistics"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "1_acoustic:run_stat_features",
+   "script": "CODE/1_acoustic/run_stat_features.py",
+   "module": "acoustic emission classification",
+   "summary": "声学特征显著性检验 (ANOVA + Kruskal-Wallis)",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/statistics"
+   ],
+   "uses_rng": false,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "2_laser_ultrasound:prepare_lu_v3",
+   "script": "CODE/2_laser_ultrasound/prepare_lu_v3.py",
+   "module": "laser-ultrasound classification",
+   "summary": "基于论文几何参数的物理标签生成（放宽版）",
+   "data_paths": [
+    "data/laser_ultrasound",
+    "data/laser_ultrasound/201120_Ti_FMC_128ave.mat"
+   ],
+   "uses_rng": false,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "2_laser_ultrasound:run_lu_v2",
+   "script": "CODE/2_laser_ultrasound/run_lu_v2.py",
+   "module": "laser-ultrasound classification",
+   "summary": "激光超声分类 - 仿照声学V12框架",
+   "data_paths": [
+    "data/laser_ultrasound"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "2_laser_ultrasound:run_stat_cv_lu",
+   "script": "CODE/2_laser_ultrasound/run_stat_cv_lu.py",
+   "module": "laser-ultrasound classification",
+   "summary": "激光超声 K折交叉验证 - 去除pywt依赖版",
+   "data_paths": [
+    "data/laser_ultrasound",
+    "data/statistics"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "3_fusion:run_fusion_baseline",
+   "script": "CODE/3_fusion/run_fusion_baseline.py",
+   "module": "multi-modal fusion",
+   "summary": "多模态融合基线对比实验",
+   "data_paths": [
+    "data/fusion"
+   ],
+   "uses_rng": true,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "3_fusion:run_fusion_combinations",
+   "script": "CODE/3_fusion/run_fusion_combinations.py",
+   "module": "multi-modal fusion",
+   "summary": "多模态组合对比：AE+LU / AE+PC / LU+PC / 三模态",
+   "data_paths": [
+    "data/fusion"
+   ],
+   "uses_rng": true,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "3_fusion:run_fusion_sim",
+   "script": "CODE/3_fusion/run_fusion_sim.py",
+   "module": "multi-modal fusion",
+   "summary": "多模态融合验证 - 统一卡尔曼框架仿真",
+   "data_paths": [
+    "data/fusion"
+   ],
+   "uses_rng": true,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "3_fusion:run_sensitivity_full",
+   "script": "CODE/3_fusion/run_sensitivity_full.py",
+   "module": "multi-modal fusion",
+   "summary": "全面敏感性分析",
+   "data_paths": [
+    "data/laser_ultrasound/X_lu.npy",
+    "data/sensitivity"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "4_phase_pointcloud:run_phase_unwrap_v4",
+   "script": "CODE/4_phase_pointcloud/run_phase_unwrap_v4.py",
+   "module": "phase unwrapping and point cloud",
+   "summary": "相位解缠 v4 - 传统解缠 + 卡尔曼残差滤波",
+   "data_paths": [
+    "data/phase_unwrap"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "4_phase_pointcloud:run_pointcloud_v4",
+   "script": "CODE/4_phase_pointcloud/run_pointcloud_v4.py",
+   "module": "phase unwrapping and point cloud",
+   "summary": "点云仿真与处理 v4 - 滑动窗口峰值检测",
+   "data_paths": [
+    "data/pointcloud"
+   ],
+   "uses_rng": true,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "4_phase_pointcloud:run_unwrap_baseline",
+   "script": "CODE/4_phase_pointcloud/run_unwrap_baseline.py",
+   "module": "phase unwrapping and point cloud",
+   "summary": "相位解缠基线对比实验",
+   "data_paths": [
+    "data/phase_unwrap"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "5_control:offline_diagnosis",
+   "script": "CODE/5_control/offline_diagnosis.py",
+   "module": "closed-loop control and edge diagnosis",
+   "summary": "离线边缘智能诊断模块",
+   "data_paths": [],
+   "uses_rng": false,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "5_control:run_closed_loop_v3",
+   "script": "CODE/5_control/run_closed_loop_v3.py",
+   "module": "closed-loop control and edge diagnosis",
+   "summary": "闭环控制与追溯验证 v3 - 参数调优版",
+   "data_paths": [
+    "data/closed_loop"
+   ],
+   "uses_rng": true,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "5_control:run_control_baseline_v4",
+   "script": "CODE/5_control/run_control_baseline_v4.py",
+   "module": "closed-loop control and edge diagnosis",
+   "summary": "闭环控制基线对比实验 v4 - 折中参数",
+   "data_paths": [
+    "data/closed_loop"
+   ],
+   "uses_rng": true,
+   "provenance": "simulated",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_complexity",
+   "script": "CODE/6_visualization/run_complexity.py",
+   "module": "statistics and figures",
+   "summary": "复杂度分析 - 推理时间、参数规模、理论复杂度",
+   "data_paths": [
+    "data/complexity"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_confusion_matrix",
+   "script": "CODE/6_visualization/run_confusion_matrix.py",
+   "module": "statistics and figures",
+   "summary": "混淆矩阵热力图",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/figures",
+    "data/laser_ultrasound"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_feature_correlation",
+   "script": "CODE/6_visualization/run_feature_correlation.py",
+   "module": "statistics and figures",
+   "summary": "特征相关性矩阵",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/figures",
+    "data/laser_ultrasound"
+   ],
+   "uses_rng": false,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_figure_pipeline",
+   "script": "CODE/6_visualization/run_figure_pipeline.py",
+   "module": "statistics and figures",
+   "summary": "图片自动编号 + 合并 + 导出 TIFF",
+   "data_paths": [
+    "data/figures",
+    "data/figures_tif"
+   ],
+   "uses_rng": false,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_roc_auc",
+   "script": "CODE/6_visualization/run_roc_auc.py",
+   "module": "statistics and figures",
+   "summary": "ROC/AUC 计算 - NumPy 2.0 兼容版",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/laser_ultrasound",
+    "data/statistics"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_stat_repeat",
+   "script": "CODE/6_visualization/run_stat_repeat.py",
+   "module": "statistics and figures",
+   "summary": "重复实验 + t检验 (10次不同随机种子)",
+   "data_paths": [
+    "data/statistics"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_tsne",
+   "script": "CODE/6_visualization/run_tsne.py",
+   "module": "statistics and figures",
+   "summary": "t-SNE 特征可视化（纯 numpy 实现）",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/figures",
+    "data/laser_ultrasound"
+   ],
+   "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_visualization_full",
+   "script": "CODE/6_visualization/run_visualization_full.py",
+   "module": "statistics and figures",
+   "summary": "论文图表批量生成",
+   "data_paths": [
+    "data/figures"
+   ],
+   "uses_rng": false,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "make_refs",
+   "script": "CODE/make_refs.py",
+   "module": "root",
+   "summary": "",
+   "data_paths": [],
+   "uses_rng": false,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "run_epfl_cross_subset",
+   "script": "CODE/run_epfl_cross_subset.py",
+   "module": "root",
+   "summary": "EPFL 跨子集验证 D1-D4",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE",
+    "data/statistics"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  }
+ ]
+}
