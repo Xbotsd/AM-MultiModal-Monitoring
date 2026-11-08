@@ -1,4 +1,4 @@
-﻿"""Running stages, with the data check and the provenance record kept honest.
+"""Running stages, with the data check and the provenance record kept honest.
 
 A stage is executed in a subprocess with the repository root as working
 directory, because every script in ``CODE/`` chdirs there itself and reads

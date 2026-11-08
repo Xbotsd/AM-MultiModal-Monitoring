@@ -1,4 +1,4 @@
-﻿# Architecture
+# Architecture
 
 ## Why the analysis scripts were not rewritten
 

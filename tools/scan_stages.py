@@ -1,4 +1,4 @@
-﻿"""Scan CODE/ and emit a machine-checked stage registry.
+"""Scan CODE/ and emit a machine-checked stage registry.
 
 Every analysis script in this repository is a research artefact with its own
 hard-coded paths.  Rather than rewrite them, the system treats them as stages and

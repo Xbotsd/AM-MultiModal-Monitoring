@@ -1,4 +1,4 @@
-﻿"""dbound — detectability bound for volumetric flaw inspection.
+"""dbound — detectability bound for volumetric flaw inspection.
 
 Public API
 ----------

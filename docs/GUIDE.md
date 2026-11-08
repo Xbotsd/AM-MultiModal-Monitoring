@@ -1,4 +1,4 @@
-﻿# User guide
+# User guide
 
 How to install the system, give it data, run it, and read the result without
 misreading it.

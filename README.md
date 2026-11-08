@@ -1,4 +1,4 @@
-﻿# AM-MultiModal-Monitoring
+# AM-MultiModal-Monitoring
 
 **An integrated in-situ monitoring system for metal additive manufacturing: measurement, fusion, control — and a closed-form bound on what any detector could possibly see.**
 
