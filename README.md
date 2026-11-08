@@ -15,6 +15,25 @@ The classifier stages report accuracy. The decision layer reports the ceiling th
 accuracy is measured against. A 97% score means nothing if the flaws it misses sit
 below the resolution limit; the bound says where that limit is.
 
+## Start here
+
+| if you want to… | read |
+|---|---|
+| understand what the system is and where each number comes from | [`docs/使用说明.md`](docs/使用说明.md) (中文) |
+| install it, place data, run stages, use the decision layer | [`docs/GUIDE.md`](docs/GUIDE.md) |
+| know what may be cited as process evidence | [`docs/PROVENANCE.md`](docs/PROVENANCE.md) |
+| understand the layering and data contracts | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |
+| get the datasets | [`data/README.md`](data/README.md) |
+
+Sixty seconds:
+
+```bash
+pip install -e .
+python -m ammonitor list        # 28 stages; a leading ! means data absent
+python -m ammonitor report      # what may be claimed, by provenance
+pytest -q                       # 16 passed
+```
+
 ## Architecture
 
 ```
