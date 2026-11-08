@@ -43,6 +43,19 @@ def test_acoustic_core_stages_are_measured():
             assert s.provenance == "simulated"
 
 
+def test_phase_unwrap_is_simulated_not_measured():
+    """The phase stages generate the field they analyse; a path heuristic once
+    mis-tagged them as measured because they also write into data/."""
+    for s in registry.load():
+        if s.stage.startswith("4_phase_pointcloud:"):
+            assert s.provenance == "simulated", s.stage
+
+
+def test_provenance_counts_are_the_documented_ones():
+    counts = report.provenance_summary()
+    assert counts == {"measured": 7, "simulated": 9, "derived": 12}, counts
+
+
 def test_missing_data_detection(tmp_path):
     s = registry.get("1_acoustic:run_eplf_v12")
     assert registry.missing_data(s, root=tmp_path)      # nothing exists there

@@ -170,7 +170,7 @@
     "data/phase_unwrap"
    ],
    "uses_rng": true,
-   "provenance": "measured",
+   "provenance": "simulated",
    "python": "python"
   },
   {
@@ -194,7 +194,7 @@
     "data/phase_unwrap"
    ],
    "uses_rng": true,
-   "provenance": "measured",
+   "provenance": "simulated",
    "python": "python"
   },
   {

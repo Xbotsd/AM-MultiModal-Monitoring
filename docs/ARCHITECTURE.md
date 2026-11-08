@@ -1,4 +1,4 @@
-# Architecture
+﻿# Architecture
 
 ## Why the analysis scripts were not rewritten
 
@@ -29,7 +29,7 @@ registry cannot drift.
 | `1_acoustic` | EPFL AE classification, baselines, ablation, statistics | measured |
 | `2_laser_ultrasound` | Cranfield LUT, label generation from geometry | measured |
 | `3_fusion` | Kalman fusion, combinations, sensitivity | simulated (except `run_sensitivity_full`) |
-| `4_phase_pointcloud` | phase unwrapping, point-cloud defect detection | mixed |
+| `4_phase_pointcloud` | phase unwrapping, point-cloud defect detection | simulated |
 | `5_control` | closed loop, edge diagnosis, control baselines | simulated |
 | `6_visualization` | ROC/AUC, confusion, t-SNE, figures | derived |
 
@@ -71,3 +71,4 @@ hand.
 3. `python -m ammonitor list` — the new stage appears with its provenance and a `!`
    if its data are missing.
 4. `pytest -q` — the registry integrity test covers the new entry automatically.
+

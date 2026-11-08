@@ -1,4 +1,4 @@
-# User guide
+﻿# User guide
 
 How to install the system, give it data, run it, and read the result without
 misreading it.
@@ -182,8 +182,8 @@ prints three disjoint lists:
 
 | category | stages | may be cited as |
 |---|---|---|
-| `measured` | 9 | evidence about the process |
-| `simulated` | 7 | evidence about the method only |
+| `measured` | 7 | evidence about the process |
+| `simulated` | 9 | evidence about the method only |
 | `derived` | 12 | neither; statistics and figures |
 
 The fusion and closed-loop control modules are simulation studies: they draw random
@@ -248,3 +248,4 @@ apart so the question has an answer.
 No. `ammonitor list/run/chain/report` work on the registry alone. The decision layer
 (`src/dbound/`) is independent and has its own tests; it is vendored here so a single
 clone gives both.
+

@@ -1,4 +1,4 @@
-"""Running stages, with the data check and the provenance record kept honest.
+﻿"""Running stages, with the data check and the provenance record kept honest.
 
 A stage is executed in a subprocess with the repository root as working
 directory, because every script in ``CODE/`` chdirs there itself and reads
@@ -12,6 +12,7 @@ missing dataset fails loudly instead of producing a silently empty result.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 import time
@@ -47,8 +48,11 @@ def run(stage: str, allow_missing_data: bool = False, timeout: int | None = None
         return StageResult(s.stage, s.provenance, 2, 0.0, missing,
                            "refused: input data absent (use --allow-missing-data)")
     t0 = time.time()
+    env = dict(os.environ)
+    env.setdefault("PYTHONIOENCODING", "utf-8")
     proc = subprocess.run([sys.executable, s.script], cwd=str(root),
-                          capture_output=True, text=True, timeout=timeout)
+                          capture_output=True, text=True, timeout=timeout,
+                          encoding="utf-8", errors="replace", env=env)
     dt = time.time() - t0
     tail = "\n".join((proc.stdout or "").strip().splitlines()[-8:])
     return StageResult(s.stage, s.provenance, proc.returncode, dt, missing, tail)
@@ -83,3 +87,4 @@ def measured_chain() -> list[str]:
         if any(s.stage.startswith(p) for p in order):
             out.append(s.stage)
     return out
+

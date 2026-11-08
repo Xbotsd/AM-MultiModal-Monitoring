@@ -35,6 +35,26 @@ MODULES = {
     "6_visualization": "statistics and figures",
 }
 
+# Default provenance per module.  Path heuristics are not enough: several scripts
+# both read and write under data/, and the phase-unwrap stages *generate* the
+# deformation field they analyse while writing it into data/phase_unwrap.  The
+# module is the reliable signal; the overrides below handle the exceptions.
+MODULE_PROVENANCE = {
+    "1_acoustic": "measured",          # EPFL acoustic set, read from disk
+    "2_laser_ultrasound": "measured",  # Cranfield LUT, read from disk
+    "3_fusion": "simulated",           # generates sensor streams
+    "4_phase_pointcloud": "simulated", # generates the phase field and the cloud
+    "5_control": "simulated",          # generates trajectories
+    "6_visualization": "derived",      # statistics and figures on other stages
+}
+
+OVERRIDES = {
+    # reads X_lu.npy, which is derived from the measured Cranfield data
+    "3_fusion:run_sensitivity_full": "measured",
+    "run_epfl_cross_subset": "measured",
+    "make_refs": "derived",
+}
+
 
 def _read(path: pathlib.Path) -> str:
     raw = path.read_bytes()
@@ -66,21 +86,21 @@ def scan(path: pathlib.Path) -> dict:
     writes_rng = "np.random" in text or "random.seed" in text
 
     summary = docstring(path)
-    if any(h in name for h in SIM_HINTS) or any(
+    stage_id = rel.removeprefix("CODE/").removesuffix(".py").replace("/", ":")
+    if stage_id in OVERRIDES:
+        provenance = OVERRIDES[stage_id]
+    elif any(h in name for h in SIM_HINTS) or any(
             k in summary.lower() for k in ("sim", "仿真", "模拟")):
         provenance = "simulated"
     elif any(h in name for h in DERIVED_HINTS):
         provenance = "derived"
-    elif any(p.startswith(("data/epfl_acoustic", "data/laser_ultrasound",
-                           "data/phase_unwrap", "data/pointcloud")) for p in data_paths):
-        provenance = "measured"
-    elif writes_rng:
-        provenance = "simulated"
     else:
-        provenance = "unknown"
+        provenance = MODULE_PROVENANCE.get(module_dir, "unknown")
+    if provenance == "unknown" and writes_rng and not data_paths:
+        provenance = "simulated"
 
     return {
-        "stage": rel.removeprefix("CODE/").removesuffix(".py").replace("/", ":"),
+        "stage": stage_id,
         "script": rel,
         "module": MODULES.get(module_dir, module_dir),
         "summary": summary,
@@ -114,4 +134,5 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
 

@@ -1,4 +1,4 @@
-# AM-MultiModal-Monitoring
+﻿# AM-MultiModal-Monitoring
 
 **An integrated in-situ monitoring system for metal additive manufacturing: measurement, fusion, control — and a closed-form bound on what any detector could possibly see.**
 
@@ -121,8 +121,8 @@ categories:
 
 | category | stages | may be cited as |
 |---|---|---|
-| `measured` | 9 | evidence about the process |
-| `simulated` | 7 | evidence about the method only |
+| `measured` | 7 | evidence about the process |
+| `simulated` | 9 | evidence about the method only |
 | `derived` | 12 | neither; statistics and figures |
 
 The fusion and closed-loop control modules are simulation studies — they carry
@@ -172,3 +172,4 @@ produced the published figures.
 
 Code: MIT. Datasets keep their own licences. If you use this system, cite the
 underlying paper and the dataset records above.
+
