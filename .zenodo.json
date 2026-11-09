@@ -1,0 +1,51 @@
+{
+  "title": "AM-MultiModal-Monitoring: an integrated in-situ monitoring system for metal additive manufacturing with a detectability bound",
+  "description": "<p>Code and documentation for a multi-modal in-situ monitoring system for laser powder-bed fusion and directed energy deposition, extended with a closed-form bound on what any detector could achieve given the sensing chain.</p><p>The system has two halves. A <b>measurement chain</b> classifies process state from acoustic emission, laser ultrasound, and phase / point-cloud data, using a unified Kalman fusion framework with offline edge intelligence. A <b>decision layer</b> states the ceiling of that chain: for a known signal in additive noise the matched filter maximises the deflection, so detection probability cannot exceed <code>Phi(d' - z)</code> whatever the model, and the geometry of the flaw enters through a single energy functional with two asymptotes.</p><p>Provenance is a first-class property. A machine-generated registry of 28 analysis stages tags each one as <i>measured</i> (7), <i>simulated</i> (9) or <i>derived</i> (12), and the reporting layer refuses to merge the categories, so a simulated fusion result cannot be quoted as process evidence. The registry is produced from the source by a scanner and a test asserts that the two agree, so it cannot drift.</p><p>Contents: the analysis scripts that produced the published figures, the orchestration package (registry, pipeline, decision layer, reporter, CLI), 18 tests, the detectability package, and the user guides in English and Chinese.</p>",
+  "creators": [
+    {
+      "name": "Xu, Yudong",
+      "affiliation": "School of Mechanical Engineering, Heilongjiang University of Science and Technology, Harbin 150022, China",
+      "orcid": "0009-0002-3231-0444"
+    }
+  ],
+  "keywords": [
+    "additive manufacturing",
+    "laser powder bed fusion",
+    "in-situ monitoring",
+    "acoustic emission",
+    "laser ultrasound",
+    "sensor fusion",
+    "Kalman filter",
+    "provenance",
+    "probability of detection"
+  ],
+  "license": {
+    "id": "MIT"
+  },
+  "upload_type": "software",
+  "publication_date": "2026-11-09",
+  "version": "1.0.0",
+  "language": "eng",
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.10449883",
+      "relation": "references",
+      "resource_type": "dataset",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://doi.org/10.17862/cranfield.rd.15190191",
+      "relation": "references",
+      "resource_type": "dataset",
+      "scheme": "doi"
+    },
+    {
+      "identifier": "https://github.com/Xbotsd/AM-MultiModal-Monitoring",
+      "relation": "isSupplementTo",
+      "resource_type": "software",
+      "scheme": "url"
+    }
+  ],
+  "notes": "Funded by institutional resources; no external grant. The EPFL acoustic and Cranfield laser-ultrasound datasets are third-party deposits and are not redistributed here."
+}
