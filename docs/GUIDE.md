@@ -45,7 +45,7 @@ python -m venv .venv
 source .venv/bin/activate       # Linux / macOS
 
 pip install -e .
-pytest -q                       # 16 passed
+pytest -q                       # 18 passed
 ```
 
 Core dependencies: `numpy`, `scipy`, `matplotlib`, `PyWavelets`, `pydicom`.
