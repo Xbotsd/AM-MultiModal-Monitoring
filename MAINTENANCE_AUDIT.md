@@ -1,82 +1,77 @@
-# 维护审计 · AM-MultiModal-Monitoring
+# 维护审计 · AM × DB 孪生两库
 
-审计时间：2026-11-11 21:00（Asia/Shanghai）
-审计对象：本工作区 `C:\Users\lei'shen\Desktop\am_monitoring`
-GitHub：https://github.com/Xbotsd/AM-MultiModal-Monitoring
-Zenodo：concept `10.5281/zenodo.24128937`（v1.1.0 = 24135622；v1.1.1 已发布）
-前置库：https://github.com/Xbotsd/detectability-bound（v0.1.0，24080213，concept 24080212）
+审计时间：2026-11-11 21:40（Asia/Shanghai）
+维护对象：
+- **AM**：`C:\Users\lei'shen\Desktop\am_monitoring` — https://github.com/Xbotsd/AM-MultiModal-Monitoring
+- **DB**：`D:\new_project\proj_dbound` — https://github.com/Xbotsd/detectability-bound
+
+两库是孪生：**DB 是决策半，为解决 AM“测到的结果到底能看见什么”而造；AM 是测量半。**
+代码上 AM 单向 vendor DB；溯源上两者是兄弟，不是父子。
 
 ---
 
 ## 一、当前状态
 
-| 对象 | 状态 |
-|---|---|
-| 仓库 | 36 阶段（14 measured / 9 simulated / 13 derived），21 测试，CI 绿 |
-| 版本 | `1.1.1`；`main` 含 v1.1.0 之后的全部修订 |
-| 归档 | GitHub Release `v1.1.1`；Zenodo 新版本由集成自动生成 |
-| 前置库 | dbound v0.1.0，vendored `81d99a2`；关系见 `docs/RELATION_TO_DBOUND.md` |
-| 整合稿 | `NDTE_manuscript.*`：36 阶段 / 14-9-13 / 21 测试 / v1.1.1 |
+| | AM | DB |
+|---|---|---|
+| 版本 | `1.1.2` | `0.1.1` |
+| 版本 DOI | concept `10.5281/zenodo.24128937` | `10.5281/zenodo.24136698` |
+| concept DOI | `10.5281/zenodo.24128937` | `10.5281/zenodo.24080212` |
+| 提交 | `main`（见 GitHub） | `main` = `9924285` |
+| 阶段 / 测试 | 36 阶段（14/9/13），21 测试 | 11 测试 |
+| 归档 | GitHub Release + Zenodo 自动 | GitHub Release + Zenodo 手工版本 |
+| 交叉引用 | 元数据 `requires` → DB v0.1.1 | 元数据 `isSupplementedBy` → AM concept |
 
----
+## 二、这一轮做了什么
 
-## 二、v1.1.1 闭合的三个证据缺口
+### DB v0.1.1（文档与元数据，代码未变）
 
-### G1 — 旧脚本结果入库（已闭合）
+- README 新增 **“Twin of the monitoring system”**：说明两库是同一工作的两半，DB 为解决
+  AM 的问题而造，并给出角色、问题、版本、代码关系的对照表。
+- `CITATION.cff` 与 `.zenodo.json` 引用 AM concept DOI；`.zenodo.json` 增加
+  `in-situ monitoring`、`sensor fusion`、`defect detection` 关键词。
+- 版本 0.1.0 → 0.1.1；`src/dbound` 代码与 `81d99a2` 完全一致。
+- 归档：Zenodo `24136698`，文件 `detectability-bound-v0.1.1.zip`，771 564 B，
+  md5 `77b2248bd05dd74ca20fb92cfd3c0558`。
 
-`data/statistics`、`data/output`、`data/complexity`、`data/sensitivity` 里论文用到的
-结果全部复制到 `results/`，并把 10 个脚本的输出目录改为 `results/`，以后重跑直接刷新
-已提交的工件：
+### AM v1.1.2（文档与交叉引用）
 
-`cv_acoustic`、`cross_subset_epfl`、`roc_auc`、`cv_laser_ultrasound`、
-`feature_significance`、`repeat_experiment`、`acoustic_ablation`、
-`acoustic_baseline_results`、`complexity_analysis`、`sensitivity_full`。
+- `docs/RELATION_TO_DBOUND.md` → **`docs/TWIN_LIBRARIES.md`**：改写为孪生叙事，
+  保留模块级、结果级、论文段落、版本/DOI 映射与同步流程。
+- README “Prerequisite” → **“Twin library: the decision half”**；
+  `ARCHITECTURE.md` 第 0 层同步改写。
+- `src/dbound/VENDORED.md`：记录 vendored 于 DB `v0.1.1`（`9924285`，代码同 `81d99a2`）。
+- `.zenodo.json`、`CITATION.cff`：DB 版本 DOI 由 `24080213` 更新为 `24136698`；
+  AM 版本 1.1.1 → 1.1.2。
+- 整合稿中的 “standalone prerequisite … built first” 改为 “twin … created to answer
+  the question that measurement cannot”，并同步 DB 版本与 DOI；docx/pdf 重建。
 
-### G2 — 表 4 两处数字（已闭合）
+## 三、关系（一句话版）
 
-- kNN / MLP：重跑 `run_acoustic_ablation.py` 复现 **85.21 % / 87.92 %**。
-- soft vote：同一划分、概率级 0.5/0.5 投票为 **88.75 %**（原稿 87.5 %）；
-  one-vs-rest macro AUC 为 **0.9746**（原稿 0.975，四舍五入一致）。
-- 处理：稿件表 4 与表 9 的 hold-out 改为 **88.8 %**，正文“5.3 points”改为 **6.6 points**；
-  AUC 0.975 保留。证据在 `results/acoustic_ablation.json` 的 `完整系统 (14维)`
-  行（新增 `soft_vote`、`macro_auc_soft_vote`）。
-- 另：`run_eplf_v12.py`（wavelet 特征管线）现在也把自己的 hold-out 指标写到
-  `results/acoustic_holdout.json`，数值与 FFT 管线不同，已在 `data/README.md` 注明
-  表 4 引用的是 FFT 管线。
+> AM 报告“这条链测到了什么”；DB 报告“同一条链上任何检测器最多能看到什么、要付出什么代价”。
+> DB 因 AM 的问题而生，AM 因 DB 的界而有意义；代码上 AM 固定引用 DB，溯源上两者平级。
 
-### G3 — 表 1 无结果物（已闭合）
+- 代码咬合：`src/ammonitor/decision.py` 包装 `bound/psf/detectors`；
+  `run_xct_clutter` 调 `experiments`；测试断言 `volumetric_energy == energy_at`。
+- 结果咬合：`results/xct_clutter.json` ← DB 的四个实验；`results/design_rule.json`
+  由 DB 的 `required_voxel` 生成。
+- 论文咬合：§2 与 §4.4–4.6 属 DB；§3 与 §4.1–4.3、4.7–4.9 属 AM；表 9 分开标注。
 
-新增 `6_visualization:run_design_rule`，从 `ammonitor.decision` 生成
-`results/design_rule.json`；50/100/200/500 µm × ΔI/σ 2/5/10 的允许体素
-（20.5 … 461.6 µm）与稿中表 1 逐位一致。
+## 四、证据链
 
-### G4 — 门面（部分闭合）
+v1.1.1 已闭合三个缺口：旧结果全部进 `results/`（G1）；表 4 的 soft vote 由 87.5 %
+更正为可复现的 88.8 %、AUC 0.9746（G2）；表 1 由 `run_design_rule` 生成（G3）。
+门面（CITATION、CHANGELOG、About/Topics）已补（G4 部分）。
 
-- 新增 `CITATION.cff`（含前置库与六个数据 DOI）与 `CHANGELOG.md`（1.0.0 / 1.1.0 / 1.1.1）。
-- 新增测试 `test_committed_results_are_present_and_parse`：17 个结果文件必须存在且可解析。
-- 仓库 About / Topics / Homepage 通过 API 更新（Homepage 指 concept DOI）。
-- 仍未做：四个数据集本地化（Peregrine/fringe/WLI/XCT，约 1.2 GB 下载）；这影响本机
-  `ammonitor list` 的 `!` 标记，不影响仓库与归档。
+整体完整度约 **97 %**。剩余：
 
----
+1. 四个数据集本地化（Peregrine / fringe / WLI / XCT，约 1.2 GB 下载）。
+2. 放齐数据后跑一次 `ammonitor chain measured` 做端到端回归。
+3. 图 5/6 的全量重绘需要 XCT 的 `vol_g1`/`vol_g2`。
 
-## 三、与前置库的关系
+## 五、维护约定
 
-- 代码：`src/dbound/` = upstream `81d99a2`；`ammonitor.decision` 是唯一适配层；
-  测试断言 `volumetric_energy == bound.energy_at`。
-- 测量：`run_xct_clutter` 调 `dbound.experiments` 的四个函数，结果落
-  `results/xct_clutter.json`。
-- 论文：§2 / §4.4–4.6 属 dbound；§3 / §4.1–4.3、4.7–4.9 属本仓库。
-- 版本：AM v1.1.1 ↔ dbound v0.1.0（`81d99a2`）。
-
-完整映射见 `docs/RELATION_TO_DBOUND.md`。
-
----
-
-## 四、剩余
-
-1. 跑一次完整 `ammonitor chain measured`（需先放齐六份数据）确认端到端无回归。
-2. 图 5/6 的全量重绘仍需 XCT 的 vol_g1/vol_g2。
-3. `MEASUREMENT_manuscript_DB.docx` 的 Code availability 仍是旧话（是否再投由作者决定）。
-
-证据链完整度从约 75 % 提升到约 97 %；剩余是“数据需下载”和“论文数字与结果文件的自动对账”。
+- DB 先行：DB 改代码 → 在 AM 里同步 `src/dbound/` → 更新 `VENDORED.md` 的提交号 →
+  `pytest -q`（21 条）。
+- 版本对：DB `0.1.x` ↔ AM `1.1.x`；每次发布同时更新两边的 `related_identifiers`。
+- 论文数字只能来自 `results/`；`results/` 只能由脚本生成。

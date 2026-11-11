@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ammonitor"
-version = "1.1.1"
+version = "1.1.2"
 description = "Integrated multi-modal in-situ monitoring for metal additive manufacturing, with a closed-form detectability bound"
 readme = "README.md"
 requires-python = ">=3.10"

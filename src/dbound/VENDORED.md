@@ -3,22 +3,25 @@
 `src/dbound/` is a copy of the package at
 [github.com/Xbotsd/detectability-bound](https://github.com/Xbotsd/detectability-bound),
 vendored so that a single clone of this repository gives both the monitoring system
-and the decision layer.
+and the twin decision layer.
 
 | | |
 |---|---|
 | upstream | https://github.com/Xbotsd/detectability-bound |
-| vendored at commit | `81d99a2` |
-| version | 0.1.0 |
+| vendored at commit | `9924285` (release `v0.1.1`) |
+| code commit | `81d99a2` — the `src/dbound` tree is identical there |
+| version | 0.1.1 |
 | licence | MIT (see the upstream `LICENSE`) |
 
 The copy includes the `dbound` console entry point and the `bound` subcommand
 (`python -m dbound bound --a 100 --L 40`), so the decision layer can be exercised
 without the monitoring system around it.
 
-The relationship between the two projects — what each owns, which modules and result
-files cross the boundary, and the version/DOI pairing — is documented in
-[`docs/RELATION_TO_DBOUND.md`](../../docs/RELATION_TO_DBOUND.md).
+The two projects are twins: dbound is the decision half, this repository the
+measurement half, and dbound was created to answer the question the monitoring chain
+cannot. The mapping between them — what each owns, which modules and result files
+cross the boundary, the version/DOI pairing and the sync policy — is documented in
+[`docs/TWIN_LIBRARIES.md`](../../docs/TWIN_LIBRARIES.md).
 
 ## Why a copy and not a dependency
 

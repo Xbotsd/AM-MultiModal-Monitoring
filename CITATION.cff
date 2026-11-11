@@ -12,7 +12,7 @@ authors:
     given-names: Yudong
     orcid: "https://orcid.org/0009-0002-3231-0444"
     affiliation: "School of Mechanical Engineering, Heilongjiang University of Science and Technology, Harbin 150022, China"
-version: 1.1.1
+version: 1.1.2
 date-released: "2026-11-11"
 license: MIT
 repository-code: "https://github.com/Xbotsd/AM-MultiModal-Monitoring"
@@ -32,9 +32,9 @@ references:
         given-names: Yudong
         orcid: "https://orcid.org/0009-0002-3231-0444"
     repository-code: "https://github.com/Xbotsd/detectability-bound"
-    doi: "10.5281/zenodo.24080213"
-    version: "0.1.0"
-    notes: "Prerequisite theory and demonstration; vendored in src/dbound at upstream commit 81d99a2. See docs/RELATION_TO_DBOUND.md."
+    doi: "10.5281/zenodo.24136698"
+    version: "0.1.1"
+    notes: "Twin decision half, created to answer what the monitoring chain cannot; vendored in src/dbound at code commit 81d99a2. See docs/TWIN_LIBRARIES.md."
   - type: dataset
     title: "Optimizing in-situ monitoring for laser powder bed fusion: deciphering acoustic emission and sensor sensitivity with explainable machine learning (dataset)"
     doi: "10.5281/zenodo.10449883"

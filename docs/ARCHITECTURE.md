@@ -28,16 +28,18 @@ registry cannot drift.
 
 ## Layers
 
-### 0. Prerequisite: `dbound` (vendored)
+### 0. The twin decision layer (`dbound`, vendored)
 
 The decision layer is not native to this code base. It is the standalone
 [`detectability-bound`](https://github.com/Xbotsd/detectability-bound) package
-(Zenodo v0.1.0, doi:10.5281/zenodo.24080213, concept `10.5281/zenodo.24080212`),
-developed first as the theory-and-demo artefact and vendored at `src/dbound/`
-(upstream commit `81d99a2`) so that a clone installs offline. The dependency runs one
-way: this repository calls the package and never edits it except to sync. The
+(Zenodo v0.1.1, doi:10.5281/zenodo.24136698, concept `10.5281/zenodo.24080212`),
+created in the same effort to answer the question the monitoring chain cannot: on
+this chain, what could any detector see? It is vendored at `src/dbound/` (code
+identical to upstream `81d99a2`) so that a clone installs offline. The code
+dependency runs one way — this repository calls the package and never edits it except
+to sync — but the two are twins in provenance, not parent and child. The
 module-by-module and result-by-result mapping is in
-[`RELATION_TO_DBOUND.md`](RELATION_TO_DBOUND.md).
+[`TWIN_LIBRARIES.md`](TWIN_LIBRARIES.md).
 
 ### 1. Sensing and measurement (`CODE/`)
 

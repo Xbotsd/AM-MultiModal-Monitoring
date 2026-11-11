@@ -3,6 +3,19 @@
 All notable changes to this repository. Versions follow the deposited Zenodo
 records; the concept DOI `10.5281/zenodo.24128937` always resolves to the latest.
 
+## [1.1.2] — 2026-11-11
+
+### Changed
+- The two repositories are now presented as **twins**: dbound is the decision half,
+  created to answer the question the monitoring chain cannot, not an upstream
+  dependency that happened to be reused. `docs/TWIN_LIBRARIES.md` replaces
+  `docs/RELATION_TO_DBOUND.md` with the module, result, paper, version and citation
+  mapping; the README and architecture layer carry the same framing.
+- Vendored copy recorded at dbound `v0.1.1` (commit `9924285`; the `src/dbound` tree is
+  identical to `81d99a2`, so no code changes).
+- Cross-citation updated: `.zenodo.json` and `CITATION.cff` point at the dbound v0.1.1
+  version DOI `10.5281/zenodo.24136698`.
+
 ## [1.1.1] — 2026-11-11
 
 ### Added
