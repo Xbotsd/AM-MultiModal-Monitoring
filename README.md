@@ -15,11 +15,36 @@ The classifier stages report accuracy. The decision layer reports the ceiling th
 accuracy is measured against. A 97% score means nothing if the flaws it misses sit
 below the resolution limit; the bound says where that limit is.
 
+## Prerequisite: the detectability bound
+
+The decision layer is not invented here. It is the standalone package
+[**detectability-bound**](https://github.com/Xbotsd/detectability-bound), built first
+as a theory-and-demo artefact — the derivation, the validation on public X-ray CT, and
+the reference implementation — and published as Zenodo v0.1.0
+(doi:[10.5281/zenodo.24080213](https://doi.org/10.5281/zenodo.24080213), concept
+`10.5281/zenodo.24080212`). This repository *consumes* it: a copy is vendored at
+`src/dbound/` (upstream commit `81d99a2`) and wrapped by `ammonitor.decision`.
+
+| | dbound — prerequisite | this repository |
+|---|---|---|
+| question | what can **any** detector achieve, and at what cost? | what does **this** sensing chain measure? |
+| content | bound and asymptotes, PSF/energy model, detector set, XCT estimators, design rule | measurement chain, stage registry, provenance partition, six public datasets |
+| artefacts | its own manuscript, results and DOI | the integrated manuscript, 35 stages, figures, this DOI |
+| relationship | defines the ceiling | produces the measurements the ceiling constrains |
+
+The direction is one-way: dbound knows nothing about the monitoring chain, and this
+repository never edits the vendored copy except to sync it. The code-level binding is
+`src/ammonitor/decision.py` (energy → `bound.energy_at`, POD → `ndtr(d′ − z)`,
+inversion → `required_voxel`), and a test asserts that the wrapper and the package
+agree. The full mapping — module by module, result by result, and the sync policy —
+is in [`docs/RELATION_TO_DBOUND.md`](docs/RELATION_TO_DBOUND.md).
+
 ## Start here
 
 | if you want to… | read |
 |---|---|
 | understand what the system is and where each number comes from | [`docs/使用说明.md`](docs/使用说明.md) (中文) |
+| see how the prerequisite library and this one fit together | [`docs/RELATION_TO_DBOUND.md`](docs/RELATION_TO_DBOUND.md) |
 | install it, place data, run stages, use the decision layer | [`docs/GUIDE.md`](docs/GUIDE.md) |
 | know what may be cited as process evidence | [`docs/PROVENANCE.md`](docs/PROVENANCE.md) |
 | understand the layering and data contracts | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) |

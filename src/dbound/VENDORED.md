@@ -16,6 +16,10 @@ The copy includes the `dbound` console entry point and the `bound` subcommand
 (`python -m dbound bound --a 100 --L 40`), so the decision layer can be exercised
 without the monitoring system around it.
 
+The relationship between the two projects — what each owns, which modules and result
+files cross the boundary, and the version/DOI pairing — is documented in
+[`docs/RELATION_TO_DBOUND.md`](../../docs/RELATION_TO_DBOUND.md).
+
 ## Why a copy and not a dependency
 
 A git dependency would require network access at install time and would pin the

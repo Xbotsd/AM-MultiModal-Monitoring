@@ -28,6 +28,17 @@ registry cannot drift.
 
 ## Layers
 
+### 0. Prerequisite: `dbound` (vendored)
+
+The decision layer is not native to this code base. It is the standalone
+[`detectability-bound`](https://github.com/Xbotsd/detectability-bound) package
+(Zenodo v0.1.0, doi:10.5281/zenodo.24080213, concept `10.5281/zenodo.24080212`),
+developed first as the theory-and-demo artefact and vendored at `src/dbound/`
+(upstream commit `81d99a2`) so that a clone installs offline. The dependency runs one
+way: this repository calls the package and never edits it except to sync. The
+module-by-module and result-by-result mapping is in
+[`RELATION_TO_DBOUND.md`](RELATION_TO_DBOUND.md).
+
 ### 1. Sensing and measurement (`CODE/`)
 
 | module | contents | provenance |
