@@ -79,7 +79,7 @@ def measured_chain() -> list[str]:
     This is the subset whose results say something about the process rather than
     about the method.
     """
-    order = ["1_acoustic", "2_laser_ultrasound", "4_phase_pointcloud"]
+    order = ["1_acoustic", "2_laser_ultrasound", "4_phase_pointcloud", "7_measured_real"]
     out = []
     for s in registry.load():
         if s.provenance != "measured":

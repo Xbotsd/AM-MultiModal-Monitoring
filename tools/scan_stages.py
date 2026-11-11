@@ -33,6 +33,7 @@ MODULES = {
     "4_phase_pointcloud": "phase unwrapping and point cloud",
     "5_control": "closed-loop control and edge diagnosis",
     "6_visualization": "statistics and figures",
+    "7_measured_real": "measured multi-source analyses",
 }
 
 # Default provenance per module.  Path heuristics are not enough: several scripts
@@ -46,13 +47,13 @@ MODULE_PROVENANCE = {
     "4_phase_pointcloud": "simulated", # generates the phase field and the cloud
     "5_control": "simulated",          # generates trajectories
     "6_visualization": "derived",      # statistics and figures on other stages
+    "7_measured_real": "measured",     # public multi-source captures, read from disk
 }
 
 OVERRIDES = {
     # reads X_lu.npy, which is derived from the measured Cranfield data
     "3_fusion:run_sensitivity_full": "measured",
     "run_epfl_cross_subset": "measured",
-    "make_refs": "derived",
 }
 
 

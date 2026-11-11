@@ -53,7 +53,35 @@ def test_phase_unwrap_is_simulated_not_measured():
 
 def test_provenance_counts_are_the_documented_ones():
     counts = report.provenance_summary()
-    assert counts == {"measured": 7, "simulated": 9, "derived": 12}, counts
+    assert counts == {"measured": 13, "simulated": 9, "derived": 11}, counts
+
+
+def test_data_readme_covers_every_measured_stage():
+    """A measured stage that reads ``data/<dataset>`` must have that dataset
+    documented, with its DOI and placement, in ``data/README.md``.
+
+    This is the guard against the drift that mattered most: analysis scripts were
+    run on public captures that the repository never mentioned, so the results
+    could not be reproduced from the artefact.
+    """
+    readme = (ROOT / "data" / "README.md").read_text(encoding="utf-8")
+    used = set()
+    for s in registry.load():
+        if s.provenance != "measured":
+            continue
+        for path in s.data_paths:
+            parts = path.split("/")
+            if len(parts) >= 2 and parts[0] == "data":
+                used.add("/".join(parts[:2]))
+    missing = sorted(p for p in used if p not in readme)
+    assert not missing, f"datasets read by measured stages but undocumented: {missing}"
+
+
+def test_data_readme_covers_all_six_public_sources():
+    """The manuscript cites six public sources; the data guide must name each DOI."""
+    readme = (ROOT / "data" / "README.md").read_text(encoding="utf-8")
+    for doi in ("10449883", "15190191", "23727492", "22125908", "21285367", "17602110"):
+        assert doi in readme, doi
 
 
 def test_missing_data_detection(tmp_path):

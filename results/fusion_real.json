@@ -1,0 +1,200 @@
+{
+ "meta": {
+  "n_coupons": 6376,
+  "n_builds": 5,
+  "blocks": {
+   "camera c0": {
+    "columns": 10,
+    "with_data": 10,
+    "after_filter": 10
+   },
+   "camera c1": {
+    "columns": 10,
+    "with_data": 10,
+    "after_filter": 10
+   },
+   "DSCNN segmentation": {
+    "columns": 47,
+    "with_data": 47,
+    "after_filter": 16
+   },
+   "machine telemetry": {
+    "columns": 17,
+    "with_data": 17,
+    "after_filter": 16
+   }
+  },
+  "uts_mean": 527.5526547102886,
+  "uts_sd": 73.27037586058186
+ },
+ "splits": {
+  "grouped by build (5 folds)": {
+   "table": {
+    "camera c0": {
+     "rmse": 80.72938390012412,
+     "mae": 49.26687692172504,
+     "r2": -0.21396575958513453
+    },
+    "camera c1": {
+     "rmse": 82.52888419594204,
+     "mae": 49.60568092369969,
+     "r2": -0.2686888062816353
+    },
+    "DSCNN segmentation": {
+     "rmse": 85.51094369799154,
+     "mae": 46.24197885408347,
+     "r2": -0.36202964396759274
+    },
+    "machine telemetry": {
+     "rmse": 1651.516207367425,
+     "mae": 455.9387235005514,
+     "r2": -507.0527908091591
+    },
+    "simple average": {
+     "rmse": 418.86207161135565,
+     "mae": 141.04079708599414,
+     "r2": -31.680239746199696,
+     "reduction_vs_best_single": -4.188471054474524
+    },
+    "inverse-variance / Kalman": {
+     "rmse": 253.36993467062373,
+     "mae": 100.14002118562513,
+     "r2": -10.95785602533299,
+     "reduction_vs_best_single": -2.138509455046568
+    },
+    "covariance-aware (GLS)": {
+     "rmse": 302.30487188522835,
+     "mae": 110.20481813850675,
+     "r2": -16.022896307766068,
+     "reduction_vs_best_single": -2.7446696268514885
+    },
+    "bias-aware stacking": {
+     "rmse": 512.6669677245953,
+     "mae": 165.1152481940387,
+     "r2": -47.95689129280754,
+     "reduction_vs_best_single": -5.350438253794318
+    },
+    "_best_single": {
+     "model": "camera c0",
+     "rmse": 80.72938390012412
+    }
+   },
+   "mean_weights": {
+    "camera c0": 0.26422741771646996,
+    "camera c1": 0.15934830505426195,
+    "DSCNN segmentation": 0.4175122461437387,
+    "machine telemetry": 0.15891203108552948
+   },
+   "residual_correlation": {
+    "camera c0": {
+     "camera c0": 1.0,
+     "camera c1": 0.6476658161622114,
+     "DSCNN segmentation": 0.7076444534415459,
+     "machine telemetry": 0.6134424859224861
+    },
+    "camera c1": {
+     "camera c0": 0.6476658161622114,
+     "camera c1": 1.0,
+     "DSCNN segmentation": 0.5604355816686502,
+     "machine telemetry": 0.8846590729690442
+    },
+    "DSCNN segmentation": {
+     "camera c0": 0.7076444534415459,
+     "camera c1": 0.5604355816686502,
+     "DSCNN segmentation": 1.0,
+     "machine telemetry": 0.5252893386618347
+    },
+    "machine telemetry": {
+     "camera c0": 0.6134424859224861,
+     "camera c1": 0.884659072969044,
+     "DSCNN segmentation": 0.5252893386618347,
+     "machine telemetry": 1.0
+    }
+   }
+  },
+  "random 5-fold": {
+   "table": {
+    "camera c0": {
+     "rmse": 49.1318312664943,
+     "mae": 35.85059415085968,
+     "r2": 0.5503557287456894
+    },
+    "camera c1": {
+     "rmse": 65.4370660094687,
+     "mae": 43.44386597978574,
+     "r2": 0.20238961729018046
+    },
+    "DSCNN segmentation": {
+     "rmse": 38.195974716638695,
+     "mae": 24.59829344625696,
+     "r2": 0.7282444917455051
+    },
+    "machine telemetry": {
+     "rmse": 64.07610447659214,
+     "mae": 41.66772449669183,
+     "r2": 0.23522204120258094
+    },
+    "simple average": {
+     "rmse": 46.20870836335183,
+     "mae": 31.089880219125977,
+     "r2": 0.6022677384907913,
+     "reduction_vs_best_single": -0.20977953059599974
+    },
+    "inverse-variance / Kalman": {
+     "rmse": 41.07513735073555,
+     "mae": 27.560221884358654,
+     "r2": 0.6857312414716777,
+     "reduction_vs_best_single": -0.07537869253124874
+    },
+    "covariance-aware (GLS)": {
+     "rmse": 37.43241126015408,
+     "mae": 24.121052229900553,
+     "r2": 0.7390010449202851,
+     "reduction_vs_best_single": 0.019990678655256167
+    },
+    "bias-aware stacking": {
+     "rmse": 36.033888587405016,
+     "mae": 23.63987232238778,
+     "r2": 0.7581392339476462,
+     "reduction_vs_best_single": 0.05660507802912129
+    },
+    "_best_single": {
+     "model": "DSCNN segmentation",
+     "rmse": 38.195974716638695
+    }
+   },
+   "mean_weights": {
+    "camera c0": 0.2617777934940994,
+    "camera c1": 0.1475581606744904,
+    "DSCNN segmentation": 0.43712098487923773,
+    "machine telemetry": 0.15354306095217243
+   },
+   "residual_correlation": {
+    "camera c0": {
+     "camera c0": 1.0,
+     "camera c1": 0.6043464142327993,
+     "DSCNN segmentation": 0.6616442338589784,
+     "machine telemetry": 0.5529478371266727
+    },
+    "camera c1": {
+     "camera c0": 0.6043464142327994,
+     "camera c1": 1.0,
+     "DSCNN segmentation": 0.5037410571575964,
+     "machine telemetry": 0.8686614406306298
+    },
+    "DSCNN segmentation": {
+     "camera c0": 0.6616442338589784,
+     "camera c1": 0.5037410571575964,
+     "DSCNN segmentation": 1.0,
+     "machine telemetry": 0.45847447843878175
+    },
+    "machine telemetry": {
+     "camera c0": 0.5529478371266727,
+     "camera c1": 0.8686614406306298,
+     "DSCNN segmentation": 0.45847447843878175,
+     "machine telemetry": 1.0
+    }
+   }
+  }
+ }
+}

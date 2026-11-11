@@ -19,4 +19,10 @@ __pycache__/
 *.pyc
 *.egg-info/
 .pytest_cache/
+.pytest_base/
+.tmp_pytest/
 .DS_Store
+
+# Local scratch / tooling
+.analysis/
+.dsh-office-*/

@@ -1,0 +1,106 @@
+{
+ "Heightmap_8__thr10um": {
+  "threshold_mm": 0.01,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_8__thr20um": {
+  "threshold_mm": 0.02,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_8": {
+  "shape": [
+   480,
+   20025
+  ],
+  "pixel_um": 3.982,
+  "invalid_fraction": 0.3689229088639201,
+  "detrend": "column-wise median (nominal track cross-section)",
+  "residual_sd_mm": 0.004524987862500012,
+  "quiet_stripe_sd_mm": 0.0044360202796874726,
+  "nn_ratio": 1.020055720488908,
+  "window_px": 64,
+  "residual_p99_mm": 0.013319691406339988
+ },
+ "Heightmap_14__thr10um": {
+  "threshold_mm": 0.01,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_14__thr20um": {
+  "threshold_mm": 0.02,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_14": {
+  "shape": [
+   480,
+   19724
+  ],
+  "pixel_um": 3.982,
+  "invalid_fraction": 0.5107748386060975,
+  "detrend": "column-wise median (nominal track cross-section)",
+  "residual_sd_mm": 0.0029628486890625133,
+  "quiet_stripe_sd_mm": 0.0028731166406249908,
+  "nn_ratio": 1.0312316065309493,
+  "window_px": 64,
+  "residual_p99_mm": 0.01032904687499992
+ },
+ "Heightmap_10__thr10um": {
+  "threshold_mm": 0.01,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_10__thr20um": {
+  "threshold_mm": 0.02,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_10": {
+  "shape": [
+   480,
+   20224
+  ],
+  "pixel_um": 3.982,
+  "invalid_fraction": 0.5432684145899261,
+  "detrend": "column-wise median (nominal track cross-section)",
+  "residual_sd_mm": 0.004984362206250151,
+  "quiet_stripe_sd_mm": 0.0042143599968749446,
+  "nn_ratio": 1.1827091681646045,
+  "window_px": 64,
+  "residual_p99_mm": 0.02738352031285002
+ },
+ "Heightmap_21__thr10um": {
+  "threshold_mm": 0.01,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_21__thr20um": {
+  "threshold_mm": 0.02,
+  "covered_fraction": 0.0,
+  "regions": 0,
+  "largest_region_px": 0
+ },
+ "Heightmap_21": {
+  "shape": [
+   480,
+   19909
+  ],
+  "pixel_um": 3.982,
+  "invalid_fraction": 0.5554720854889749,
+  "detrend": "column-wise median (nominal track cross-section)",
+  "residual_sd_mm": 0.0028752942093749657,
+  "quiet_stripe_sd_mm": 0.002639641889062478,
+  "nn_ratio": 1.089274352437324,
+  "window_px": 64,
+  "residual_p99_mm": 0.015054949218750016
+ }
+}

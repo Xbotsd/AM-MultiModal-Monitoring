@@ -1,0 +1,54 @@
+{
+ "usable_fraction": 0.8162368888888889,
+ "ref_mm_range": [
+  0.0,
+  6.200572490692139
+ ],
+ "methods": {
+  "unweighted integration (carrier corrected)": {
+   "rmse_mm": 0.5321679957562795,
+   "mae_mm": 0.37620621821667266,
+   "rmse_trimmed_mm": 0.2940929570800104,
+   "scale_mm_per_rad": -0.09214374601079396,
+   "offset_mm": 3.3407947408393084,
+   "n_eval": 918267,
+   "change_vs_integration": 0.0
+  },
+  "+ Kalman residual filter": {
+   "rmse_mm": 0.5606195128745207,
+   "mae_mm": 0.40344979716537627,
+   "rmse_trimmed_mm": 0.3494587358199288,
+   "scale_mm_per_rad": -0.04843003887511748,
+   "offset_mm": 3.233201186611123,
+   "n_eval": 918267,
+   "change_vs_integration": 0.05346341257859355
+  },
+  "+ Kalman + diffusion": {
+   "rmse_mm": 0.5406025232401221,
+   "mae_mm": 0.39583431362059296,
+   "rmse_trimmed_mm": 0.36667043464388815,
+   "scale_mm_per_rad": -0.08572025419749271,
+   "offset_mm": 3.309265592196031,
+   "n_eval": 918267,
+   "change_vs_integration": 0.015849370031837617
+  },
+  "weighted least squares": {
+   "rmse_mm": 0.5384063093678467,
+   "mae_mm": 0.38789623408604573,
+   "rmse_trimmed_mm": 0.3263190607121823,
+   "scale_mm_per_rad": -0.08267711565846549,
+   "offset_mm": 3.3171529371217847,
+   "n_eval": 918267,
+   "change_vs_integration": 0.011722451671866807
+  },
+  "quality-guided": {
+   "rmse_mm": 0.5341852564327294,
+   "mae_mm": 0.3802235460936312,
+   "rmse_trimmed_mm": 0.30517152920548607,
+   "scale_mm_per_rad": -0.08898356045441495,
+   "offset_mm": 3.332658606627367,
+   "n_eval": 918267,
+   "change_vs_integration": 0.003790646360803951
+  }
+ }
+}

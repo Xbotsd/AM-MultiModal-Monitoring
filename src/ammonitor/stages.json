@@ -1,13 +1,14 @@
 {
  "generated_by": "tools/scan_stages.py",
- "n_stages": 28,
+ "n_stages": 33,
  "modules": {
   "1_acoustic": "acoustic emission classification",
   "2_laser_ultrasound": "laser-ultrasound classification",
   "3_fusion": "multi-modal fusion",
   "4_phase_pointcloud": "phase unwrapping and point cloud",
   "5_control": "closed-loop control and edge diagnosis",
-  "6_visualization": "statistics and figures"
+  "6_visualization": "statistics and figures",
+  "7_measured_real": "measured multi-source analyses"
  },
  "stages": [
   {
@@ -31,6 +32,19 @@
    "data_paths": [
     "data/epfl_acoustic/Deciphering AE",
     "data/output"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "1_acoustic:run_ae_spectral",
+   "script": "CODE/1_acoustic/run_ae_spectral.py",
+   "module": "acoustic emission classification",
+   "summary": "Acoustic log-spectrum bound and five-fold cross-validation on the EPFL set.",
+   "data_paths": [
+    "data/epfl_acoustic/Deciphering AE/D1_classspace_5000.npy",
+    "data/epfl_acoustic/Deciphering AE/D1_rawspace_5000.npy"
    ],
    "uses_rng": true,
    "provenance": "measured",
@@ -337,13 +351,65 @@
    "python": "python"
   },
   {
-   "stage": "make_refs",
-   "script": "CODE/make_refs.py",
-   "module": "root",
-   "summary": "",
-   "data_paths": [],
+   "stage": "7_measured_real:run_decision_real",
+   "script": "CODE/7_measured_real/run_decision_real.py",
+   "module": "measured multi-source analyses",
+   "summary": "Graded decision rule replayed on measured coupon data.",
+   "data_paths": [
+    "data/peregrine/peregrine_v2023-11_coupon_features.csv"
+   ],
    "uses_rng": false,
-   "provenance": "derived",
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "7_measured_real:run_fusion_real",
+   "script": "CODE/7_measured_real/run_fusion_real.py",
+   "module": "measured multi-source analyses",
+   "summary": "Real multi-source fusion on the ORNL Peregrine coupon table.",
+   "data_paths": [
+    "data/peregrine/peregrine_v2023-11_coupon_features.csv"
+   ],
+   "uses_rng": false,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "7_measured_real:run_pointcloud_real",
+   "script": "CODE/7_measured_real/run_pointcloud_real.py",
+   "module": "measured multi-source analyses",
+   "summary": "Measured surface-height maps through the geometric monitoring chain.",
+   "data_paths": [
+    "data/hm/{name}.ASC"
+   ],
+   "uses_rng": false,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "7_measured_real:run_unwrap_real",
+   "script": "CODE/7_measured_real/run_unwrap_real.py",
+   "module": "measured multi-source analyses",
+   "summary": "Real-data phase unwrapping on captured fringe-projection images.",
+   "data_paths": [
+    "data/fringe/3D_sample_data/3D_sample_PUMA_reconstruction.tif",
+    "data/fringe/3D_sample_data/3D_sample_acquisition.tif",
+    "data/fringe/3D_sample_data/plane_calibration_acquisition.tif"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
+   "stage": "7_measured_real:run_xct_clutter",
+   "script": "CODE/7_measured_real/run_xct_clutter.py",
+   "module": "measured multi-source analyses",
+   "summary": "Measured clutter inflation on the public X-ray CT stack.",
+   "data_paths": [
+    "data/xct/vol_gd"
+   ],
+   "uses_rng": false,
+   "provenance": "measured",
    "python": "python"
   },
   {
