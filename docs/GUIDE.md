@@ -89,7 +89,7 @@ result that could be mistaken for a null finding.
 ## 4. Find and run stages
 
 ```bash
-python -m ammonitor list                     # 33 stages, provenance + data status
+python -m ammonitor list                     # 35 stages, provenance + data status
 python -m ammonitor info 1_acoustic:run_eplf_v12
 python -m ammonitor run  1_acoustic:run_eplf_v12
 ```
@@ -105,7 +105,7 @@ python -m ammonitor chain measured --out results/chain.json
 
 That chain is derived from the registry, not hard-coded: it is exactly the stages
 tagged `measured` in the acoustic, laser-ultrasound and measured-analysis groups. It
-now includes the four real-data re-analyses (`7_measured_real`), so expect it to run
+now includes the five real-data re-analyses in `7_measured_real`, so expect it to run
 for several minutes rather than seconds.
 
 ### How a stage executes
@@ -185,9 +185,9 @@ prints three disjoint lists:
 
 | category | stages | may be cited as |
 |---|---|---|
-| `measured` | 13 | evidence about the process |
+| `measured` | 14 | evidence about the process |
 | `simulated` | 9 | evidence about the method only |
-| `derived` | 11 | neither; statistics and figures |
+| `derived` | 12 | neither; statistics and figures |
 
 The simulated fusion, unwrapping, point-cloud and closed-loop control modules draw
 their own trajectories and read no measured capture. Their measured counterparts —

@@ -41,12 +41,12 @@ module default is wrong (`3_fusion:run_sensitivity_full` reads measured features
 **This replaced a path heuristic that was wrong.** The first version tagged any
 script touching `data/phase_unwrap` as measured; the phase-unwrap scripts in fact
 *generate* the deformation field (`np.random.seed(42)`, "生成真实形变场") and write
-it there. They are now simulated, which is why the counts below are 13 / 9 / 11 and
+it there. They are now simulated, which is why the counts below are 14 / 9 / 12 and
 not higher.
 
 ## Categories
 
-### `measured` — 13 stages
+### `measured` — 14 stages
 
 Reads a measured public dataset, or analyses one that was read elsewhere.
 
@@ -65,6 +65,7 @@ Reads a measured public dataset, or analyses one that was read elsewhere.
 | `7_measured_real:run_unwrap_real` | fringe capture, `data/fringe` |
 | `7_measured_real:run_pointcloud_real` | WLI maps, `data/hm` |
 | `7_measured_real:run_xct_clutter` | XCT stack, `data/xct` |
+| `7_measured_real:run_lu_echo` | Cranfield capture, `data/laser_ultrasound` |
 
 A `measured` tag means the *input* is measured. These stages still draw random
 numbers internally — for cross-validation folds and bootstrap — which does not make
@@ -93,10 +94,14 @@ counterparts of the fusion, unwrapping, point-cloud and decision modules live in
 `CODE/7_measured_real/` and are separate stages, so a simulated gain and a measured
 gain never share a row.
 
-### `derived` — 11 stages
+### `derived` — 12 stages
 
 Statistics and figures computed on the output of the other two. Neither evidence
 about the process nor about a method; evidence about the other stages.
+
+`6_visualization:run_ndte_figures` draws the six manuscript figures from the result
+files and reads the registry counts live, so the system figure cannot state numbers
+that the registry no longer has.
 
 ## The decision layer and provenance
 
@@ -111,7 +116,7 @@ Two tests enforce the link between this file, the registry and the data guide, a
 both were added because the link had broken:
 
 * `test_provenance_counts_are_the_documented_ones` — the tag counts must equal the
-  partition stated here and in the README (13 / 9 / 11 of 33).
+  partition stated here and in the README (14 / 9 / 12 of 35).
 * `test_data_readme_covers_every_measured_stage` — every `data/<dataset>` read by a
   measured stage must be documented, with its DOI and placement, in
   `data/README.md`. This is the guard against analysis scripts run on public

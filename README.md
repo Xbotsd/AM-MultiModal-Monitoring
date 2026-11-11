@@ -29,7 +29,7 @@ Sixty seconds:
 
 ```bash
 pip install -e .
-python -m ammonitor list        # 33 stages; a leading ! means data absent
+python -m ammonitor list        # 35 stages; a leading ! means data absent
 python -m ammonitor report      # what may be claimed, by provenance
 pytest -q                       # 20 passed
 ```
@@ -82,7 +82,7 @@ is how many samples the event occupies rather than how fine the grid is.
 
 ```bash
 pip install -e .
-python -m ammonitor list          # 33 stages with provenance and data status
+python -m ammonitor list          # 35 stages with provenance and data status
 python -m ammonitor report        # what may be claimed, by category
 python -m ammonitor bound --a 100 --L 40 --dI-over-sigma 5
 pytest -q                         # 20 tests
@@ -121,9 +121,9 @@ categories:
 
 | category | stages | may be cited as |
 |---|---|---|
-| `measured` | 13 | evidence about the process |
+| `measured` | 14 | evidence about the process |
 | `simulated` | 9 | evidence about the method only |
-| `derived` | 11 | neither; statistics and figures |
+| `derived` | 12 | neither; statistics and figures |
 
 The simulated fusion, unwrapping, point-cloud and closed-loop control modules are
 simulation studies — they carry `np.random` seeds and no measured capture — and are
@@ -191,8 +191,13 @@ docstring and its output in `results/`:
 | unwrapping | `7_measured_real:run_unwrap_real` | 0.532 mm over 6.2 mm; no refinement improves it |
 | height maps | `7_measured_real:run_pointcloud_real` | 2.9–5.0 µm robust deviation; no 10 µm window |
 | graded decision | `7_measured_real:run_decision_real` | AUC 0.751; 0.54–0.93 per build; enrichment 2.25 |
-| clutter κ | `7_measured_real:run_xct_clutter` | 24–125 across 1–16 voxels on the XCT stack |
+| clutter κ | `7_measured_real:run_xct_clutter` | 24–125 across 1–16 voxels; 0.530/0.117/0.023 detector PODs |
 | spectral bound | `1_acoustic:run_ae_spectral` | 88.9 % ± 0.3 %; d′ 2.83–3.12 at 64 bands |
+| laser-ultrasound echo | `7_measured_real:run_lu_echo` | d′ 16.4 / 6.0; κ 0.99 / 0.98; POD 0.838 / 0.427 |
+
+The six manuscript figures are drawn from these files by
+`6_visualization:run_ndte_figures`, which reads the registry live so the system figure
+cannot quote counts the registry no longer has.
 
 ## Citation and licence
 
