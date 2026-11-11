@@ -31,7 +31,7 @@ Sixty seconds:
 pip install -e .
 python -m ammonitor list        # 28 stages; a leading ! means data absent
 python -m ammonitor report      # what may be claimed, by provenance
-pytest -q                       # 16 passed
+pytest -q                       # 18 passed
 ```
 
 ## Architecture
@@ -85,7 +85,7 @@ pip install -e .
 python -m ammonitor list          # 28 stages with provenance and data status
 python -m ammonitor report        # what may be claimed, by category
 python -m ammonitor bound --a 100 --L 40 --dI-over-sigma 5
-pytest -q                         # 16 tests
+pytest -q                         # 18 tests
 ```
 
 `ammonitor list` marks stages whose declared input data are absent with `!`. Nothing
