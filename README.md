@@ -54,9 +54,9 @@ Sixty seconds:
 
 ```bash
 pip install -e .
-python -m ammonitor list        # 35 stages; a leading ! means data absent
+python -m ammonitor list        # 36 stages; a leading ! means data absent
 python -m ammonitor report      # what may be claimed, by provenance
-pytest -q                       # 20 passed
+pytest -q                       # 21 passed
 ```
 
 ## Architecture
@@ -107,10 +107,10 @@ is how many samples the event occupies rather than how fine the grid is.
 
 ```bash
 pip install -e .
-python -m ammonitor list          # 35 stages with provenance and data status
+python -m ammonitor list          # 36 stages with provenance and data status
 python -m ammonitor report        # what may be claimed, by category
 python -m ammonitor bound --a 100 --L 40 --dI-over-sigma 5
-pytest -q                         # 20 tests
+pytest -q                         # 21 tests
 ```
 
 `ammonitor list` marks stages whose declared input data are absent with `!`. Nothing
@@ -148,7 +148,7 @@ categories:
 |---|---|---|
 | `measured` | 14 | evidence about the process |
 | `simulated` | 9 | evidence about the method only |
-| `derived` | 12 | neither; statistics and figures |
+| `derived` | 13 | neither; statistics and figures |
 
 The simulated fusion, unwrapping, point-cloud and closed-loop control modules are
 simulation studies — they carry `np.random` seeds and no measured capture — and are
@@ -204,7 +204,7 @@ that is deliberate. The real-data re-analyses added for v1.1.0 sit beside them i
 `CODE/7_measured_real/` and write the result files the paper's tables are generated
 from.
 
-## Measured analyses added in v1.1.0
+## Measured analyses added since v1.0.0
 
 Four of the paper's tables are computed from public captures that the v1.0.0 package
 mentioned only in prose. They are now stages, each with its dataset DOI in the
@@ -219,6 +219,7 @@ docstring and its output in `results/`:
 | clutter κ | `7_measured_real:run_xct_clutter` | 24–125 across 1–16 voxels; 0.530/0.117/0.023 detector PODs |
 | spectral bound | `1_acoustic:run_ae_spectral` | 88.9 % ± 0.3 %; d′ 2.83–3.12 at 64 bands |
 | laser-ultrasound echo | `7_measured_real:run_lu_echo` | d′ 16.4 / 6.0; κ 0.99 / 0.98; POD 0.838 / 0.427 |
+| design rule | `6_visualization:run_design_rule` | Table 1 reproduced to the digit |
 
 The six manuscript figures are drawn from these files by
 `6_visualization:run_ndte_figures`, which reads the registry live so the system figure

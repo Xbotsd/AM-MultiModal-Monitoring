@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "AM-MultiModal-Monitoring: an integrated in-situ monitoring system for metal additive manufacturing with a detectability bound"
+abstract: >-
+  Code and documentation for a multi-modal in-situ monitoring system for laser
+  powder-bed fusion and directed energy deposition, extended with a closed-form
+  bound on what any detector could achieve given the sensing chain. The monitoring
+  system is the applied half; the bound itself is the separate detectability-bound
+  package, vendored here at a pinned commit.
+authors:
+  - family-names: Xu
+    given-names: Yudong
+    orcid: "https://orcid.org/0009-0002-3231-0444"
+    affiliation: "School of Mechanical Engineering, Heilongjiang University of Science and Technology, Harbin 150022, China"
+version: 1.1.1
+date-released: "2026-11-11"
+license: MIT
+repository-code: "https://github.com/Xbotsd/AM-MultiModal-Monitoring"
+doi: "10.5281/zenodo.24128937"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.24128937"
+    description: "Concept DOI, which resolves to the latest version"
+  - type: doi
+    value: "10.5281/zenodo.24128938"
+    description: "Version DOI for v1.0.0"
+references:
+  - type: software
+    title: "detectability-bound: a closed-form detectability bound for volumetric flaw inspection"
+    authors:
+      - family-names: Xu
+        given-names: Yudong
+        orcid: "https://orcid.org/0009-0002-3231-0444"
+    repository-code: "https://github.com/Xbotsd/detectability-bound"
+    doi: "10.5281/zenodo.24080213"
+    version: "0.1.0"
+    notes: "Prerequisite theory and demonstration; vendored in src/dbound at upstream commit 81d99a2. See docs/RELATION_TO_DBOUND.md."
+  - type: dataset
+    title: "Optimizing in-situ monitoring for laser powder bed fusion: deciphering acoustic emission and sensor sensitivity with explainable machine learning (dataset)"
+    doi: "10.5281/zenodo.10449883"
+  - type: dataset
+    title: "Remote ultrasonic imaging of a wire arc additive manufactured Ti-6Al-4V component using laser induced phased array (dataset)"
+    doi: "10.17862/cranfield.rd.15190191"
+  - type: dataset
+    title: "Coupon-level features and code for build-held-out evaluation of in-situ tensile-property prediction in laser powder bed fusion (Peregrine v2023-11)"
+    doi: "10.5281/zenodo.23727492"
+  - type: dataset
+    title: "Data underlying the article Fringe projection profilometry with a reconfigurable integrated photonic circuit"
+    doi: "10.5281/zenodo.22125908"
+  - type: dataset
+    title: "NSF Future Manufacturing Data Challenge: a multimodal DED dataset for probabilistic local geometry prediction in laser tracks"
+    doi: "10.5281/zenodo.21285367"
+  - type: dataset
+    title: "Tomographic image stacks for the analysis of porosity in AlSi10Mg using tomographic image processing"
+    doi: "10.5281/zenodo.17602110"

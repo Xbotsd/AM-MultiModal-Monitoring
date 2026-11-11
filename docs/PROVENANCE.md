@@ -41,7 +41,7 @@ module default is wrong (`3_fusion:run_sensitivity_full` reads measured features
 **This replaced a path heuristic that was wrong.** The first version tagged any
 script touching `data/phase_unwrap` as measured; the phase-unwrap scripts in fact
 *generate* the deformation field (`np.random.seed(42)`, "生成真实形变场") and write
-it there. They are now simulated, which is why the counts below are 14 / 9 / 12 and
+it there. They are now simulated, which is why the counts below are 14 / 9 / 13 and
 not higher.
 
 ## Categories
@@ -94,14 +94,15 @@ counterparts of the fusion, unwrapping, point-cloud and decision modules live in
 `CODE/7_measured_real/` and are separate stages, so a simulated gain and a measured
 gain never share a row.
 
-### `derived` — 12 stages
+### `derived` — 13 stages
 
 Statistics and figures computed on the output of the other two. Neither evidence
 about the process nor about a method; evidence about the other stages.
 
 `6_visualization:run_ndte_figures` draws the six manuscript figures from the result
 files and reads the registry counts live, so the system figure cannot state numbers
-that the registry no longer has.
+that the registry no longer has. `6_visualization:run_design_rule` generates Table 1
+from the bound, so the design rule quoted in the paper is the code's own output.
 
 ## The decision layer and provenance
 
@@ -116,7 +117,7 @@ Two tests enforce the link between this file, the registry and the data guide, a
 both were added because the link had broken:
 
 * `test_provenance_counts_are_the_documented_ones` — the tag counts must equal the
-  partition stated here and in the README (14 / 9 / 12 of 35).
+  partition stated here and in the README (14 / 9 / 13 of 36).
 * `test_data_readme_covers_every_measured_stage` — every `data/<dataset>` read by a
   measured stage must be documented, with its DOI and placement, in
   `data/README.md`. This is the guard against analysis scripts run on public

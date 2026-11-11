@@ -19,7 +19,7 @@ import json
 
 DATA_DIR_EPFL = Path("data/epfl_acoustic/Deciphering AE")
 DATA_DIR_LU = Path("data/laser_ultrasound")
-OUTPUT_DIR = Path("data/statistics")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 SR_EPFL = 200000.0
 SR_LU = 20000.0

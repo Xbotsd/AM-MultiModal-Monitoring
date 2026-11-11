@@ -1,0 +1,34 @@
+{
+ "dataset": "D1",
+ "n_per_class": 800,
+ "n_test": 480,
+ "seed": 42,
+ "split": "80/20 hold-out, shuffled with seed 42",
+ "knn_accuracy": 0.8395833333333333,
+ "mlp_accuracy": 0.8541666666666666,
+ "ensemble_accuracy": 0.8541666666666666,
+ "ensemble_rule": "0.5 * P(knn) + 0.5 * P(mlp), soft vote",
+ "per_class_accuracy": {
+  "LoF": 0.9395973154362416,
+  "Conduction": 0.8238993710691824,
+  "Keyhole": 0.8081395348837209
+ },
+ "macro_auc_ovr": 0.9643737347104439,
+ "confusion_matrix": [
+  [
+   140,
+   9,
+   0
+  ],
+  [
+   22,
+   131,
+   6
+  ],
+  [
+   17,
+   16,
+   139
+  ]
+ ]
+}

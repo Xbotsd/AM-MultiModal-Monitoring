@@ -15,7 +15,7 @@ import numpy as np
 from pathlib import Path
 import json
 
-OUTPUT_DIR = Path("data/sensitivity")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 

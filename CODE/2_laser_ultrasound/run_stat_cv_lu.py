@@ -20,7 +20,7 @@ from sklearn.metrics import precision_recall_fscore_support
 import json
 
 DATA_DIR = Path("data/laser_ultrasound")
-OUTPUT_DIR = Path("data/statistics")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 N_CLASSES = 2
 MAX_SAMPLES = 800

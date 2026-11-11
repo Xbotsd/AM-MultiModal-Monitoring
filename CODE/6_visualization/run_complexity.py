@@ -19,7 +19,7 @@ from pathlib import Path
 from scipy.fft import rfft, rfftfreq
 from scipy.stats import kurtosis as scipy_kurtosis, skew as scipy_skew
 
-OUTPUT_DIR = Path("data/complexity")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # ============================================================

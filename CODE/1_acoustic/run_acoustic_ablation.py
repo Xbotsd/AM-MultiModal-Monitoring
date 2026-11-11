@@ -18,7 +18,7 @@ from scipy.stats import kurtosis as scipy_kurtosis, skew as scipy_skew
 import json
 
 DATA_DIR = Path("data/epfl_acoustic/Deciphering AE")
-OUTPUT_DIR = Path("data/output")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 DATASET = "D1"
 N_CLASSES = 3
@@ -152,6 +152,25 @@ class DeepMLP:
         return self.forward(X)
 
 
+def auc_binary(y_true, score):
+    """One-vs-rest AUC by the trapezoid rule (no sklearn dependency)."""
+    thresholds = np.sort(np.unique(score))[::-1]
+    P = np.sum(y_true == 1)
+    N = np.sum(y_true == 0)
+    tpr, fpr = [], []
+    for t in thresholds:
+        pred = (score >= t).astype(int)
+        tp = np.sum((pred == 1) & (y_true == 1))
+        fp = np.sum((pred == 1) & (y_true == 0))
+        tpr.append(tp / (P + 1e-10))
+        fpr.append(fp / (N + 1e-10))
+    fpr = np.array(fpr)
+    tpr = np.array(tpr)
+    order = np.argsort(fpr)
+    fpr, tpr = fpr[order], tpr[order]
+    return float(np.trapezoid(tpr, fpr) if hasattr(np, "trapezoid") else np.trapz(tpr, fpr))
+
+
 def run_experiment(feature_set, classifier_type, X_raw, y_raw):
     X, y = [], []
     for label in range(N_CLASSES):
@@ -186,6 +205,15 @@ def run_experiment(feature_set, classifier_type, X_raw, y_raw):
         results["mlp"] = np.mean(np.argmax(mlp_proba, axis=1) == y_te)
     if classifier_type == "both":
         results["ensemble"] = (results.get("knn", 0) + results.get("mlp", 0)) / 2
+        # probability-level soft votes, the rule the paper quotes
+        soft = 0.5 * knn_proba + 0.5 * mlp_proba
+        results["soft_vote"] = float(np.mean(np.argmax(soft, axis=1) == y_te))
+        results["macro_auc_soft_vote"] = float(np.mean(
+            [auc_binary((y_te == i).astype(int), soft[:, i]) for i in range(N_CLASSES)]))
+        soft_w = 0.4 * knn_proba + 0.6 * mlp_proba
+        results["soft_vote_0.4_0.6"] = float(np.mean(np.argmax(soft_w, axis=1) == y_te))
+        results["macro_auc_soft_vote_0.4_0.6"] = float(np.mean(
+            [auc_binary((y_te == i).astype(int), soft_w[:, i]) for i in range(N_CLASSES)]))
     return results
 
 
@@ -221,6 +249,17 @@ def main():
             "mlp": float(r.get("mlp", 0)),
             "ensemble": float(r.get("ensemble", 0)),
         }
+        if "soft_vote" in r:
+            results_all[name].update({
+                "soft_vote": float(r["soft_vote"]),
+                "macro_auc_soft_vote": float(r["macro_auc_soft_vote"]),
+                "soft_vote_0.4_0.6": float(r["soft_vote_0.4_0.6"]),
+                "macro_auc_soft_vote_0.4_0.6": float(r["macro_auc_soft_vote_0.4_0.6"]),
+            })
+            print(f"    soft vote 0.5/0.5: {r['soft_vote']*100:.2f}%  "
+                  f"AUC {r['macro_auc_soft_vote']:.4f} | "
+                  f"0.4/0.6: {r['soft_vote_0.4_0.6']*100:.2f}%  "
+                  f"AUC {r['macro_auc_soft_vote_0.4_0.6']:.4f}")
 
     with open(OUTPUT_DIR / "acoustic_ablation.json", "w", encoding="utf-8") as f:
         json.dump(results_all, f, indent=2, ensure_ascii=False)

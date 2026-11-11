@@ -1,0 +1,8 @@
+{
+  "Softmax Regression": 0.8083333333333333,
+  "Gaussian Naive Bayes": 0.7604166666666666,
+  "Decision Stump Ensemble": 0.3125,
+  "KNN only": 0.8395833333333333,
+  "MLP only": 0.8541666666666666,
+  "Proposed (KNN + MLP, weighted)": 0.8625
+}

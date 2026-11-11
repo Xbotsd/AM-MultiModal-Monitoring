@@ -53,7 +53,28 @@ def test_phase_unwrap_is_simulated_not_measured():
 
 def test_provenance_counts_are_the_documented_ones():
     counts = report.provenance_summary()
-    assert counts == {"measured": 14, "simulated": 9, "derived": 12}, counts
+    assert counts == {"measured": 14, "simulated": 9, "derived": 13}, counts
+
+
+def test_committed_results_are_present_and_parse():
+    """Every result file the figure stage and the manuscript depend on exists.
+
+    The measured stages write into ``results/`` and those files are committed, so a
+    clone can read the numbers without the datasets. A missing or unparsable file is
+    a broken evidence chain, not a cosmetic issue.
+    """
+    required = [
+        "ae_d1.json", "ae_spectral.json", "acoustic_holdout.json",
+        "acoustic_ablation.json", "cv_acoustic.json", "cross_subset_epfl.json",
+        "roc_auc.json", "cv_laser_ultrasound.json", "complexity_analysis.json",
+        "sensitivity_full.json", "design_rule.json", "decision_real.json",
+        "fusion_real.json", "lu_echo.json", "pointcloud_real.json", "unwrap_real.json",
+        "xct_clutter.json",
+    ]
+    for name in required:
+        path = ROOT / "results" / name
+        assert path.exists(), f"missing result file: {name}"
+        json.loads(path.read_text(encoding="utf-8"))
 
 
 def test_data_readme_covers_every_measured_stage():

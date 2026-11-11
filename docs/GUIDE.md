@@ -45,7 +45,7 @@ python -m venv .venv
 source .venv/bin/activate       # Linux / macOS
 
 pip install -e .
-pytest -q                       # 20 passed
+pytest -q                       # 21 passed
 ```
 
 Core dependencies: `numpy`, `scipy`, `matplotlib`, `PyWavelets`, `pydicom`,
@@ -89,7 +89,7 @@ result that could be mistaken for a null finding.
 ## 4. Find and run stages
 
 ```bash
-python -m ammonitor list                     # 35 stages, provenance + data status
+python -m ammonitor list                     # 36 stages, provenance + data status
 python -m ammonitor info 1_acoustic:run_eplf_v12
 python -m ammonitor run  1_acoustic:run_eplf_v12
 ```
@@ -187,7 +187,7 @@ prints three disjoint lists:
 |---|---|---|
 | `measured` | 14 | evidence about the process |
 | `simulated` | 9 | evidence about the method only |
-| `derived` | 12 | neither; statistics and figures |
+| `derived` | 13 | neither; statistics and figures |
 
 The simulated fusion, unwrapping, point-cloud and closed-loop control modules draw
 their own trajectories and read no measured capture. Their measured counterparts —

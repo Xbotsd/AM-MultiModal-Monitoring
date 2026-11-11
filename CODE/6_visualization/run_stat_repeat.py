@@ -16,7 +16,7 @@ from pathlib import Path
 from scipy import stats
 import json
 
-OUTPUT_DIR = Path("data/statistics")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 

@@ -129,16 +129,24 @@ the detector/ablation panels. The XCT estimator itself belongs to the
 ## Derived working data
 
 Stages write intermediate arrays and results into `data/<module>/`. These are
-regenerable and are not committed. The working directories are `data/output/`,
-`data/sensitivity/`, `data/statistics/`, `data/fusion/`, `data/phase_unwrap/`,
-`data/pointcloud/`, `data/closed_loop/`, `data/complexity/` and `data/figures*/`;
-they hold outputs, not inputs. The committed summaries are the small result files in
-`results/`:
+regenerable and are not committed. The working directories are `data/fusion/`,
+`data/phase_unwrap/`, `data/pointcloud/`, `data/closed_loop/` and `data/figures*/`;
+they hold outputs, not inputs. The measured and derived analyses now write their
+summaries to `results/`, which is committed:
 
 | file | produced by |
 |---|---|
 | `results/ae_d1.json` | `tools/ae_detectability.py` |
 | `results/ae_spectral.json` | `CODE/1_acoustic/run_ae_spectral.py` |
+| `results/acoustic_holdout.json` | `CODE/1_acoustic/run_eplf_v12.py` (wavelet pipeline) |
+| `results/acoustic_ablation.json` | `CODE/1_acoustic/run_acoustic_ablation.py` (the Table 4 row) |
+| `results/cv_acoustic.json` | `CODE/1_acoustic/run_stat_cv_acoustic.py` |
+| `results/cross_subset_epfl.json` | `CODE/run_epfl_cross_subset.py` |
+| `results/roc_auc.json` | `CODE/6_visualization/run_roc_auc.py` |
+| `results/cv_laser_ultrasound.json` | `CODE/2_laser_ultrasound/run_stat_cv_lu.py` |
+| `results/complexity_analysis.json` | `CODE/6_visualization/run_complexity.py` |
+| `results/sensitivity_full.json` | `CODE/3_fusion/run_sensitivity_full.py` |
+| `results/design_rule.json` | `CODE/6_visualization/run_design_rule.py` |
 | `results/fusion_real.json` | `CODE/7_measured_real/run_fusion_real.py` |
 | `results/decision_real.json` | `CODE/7_measured_real/run_decision_real.py` |
 | `results/unwrap_real.json` | `CODE/7_measured_real/run_unwrap_real.py` |
@@ -146,6 +154,10 @@ they hold outputs, not inputs. The committed summaries are the small result file
 | `results/lu_echo.json` | `CODE/7_measured_real/run_lu_echo.py` |
 | `results/xct_clutter.json` | `CODE/7_measured_real/run_xct_clutter.py` |
 | `results/stage_prepare_lu_v3.json` | `CODE/2_laser_ultrasound/prepare_lu_v3.py` |
+
+Two hold-out pipelines are reported: the wavelet one in `acoustic_holdout.json` and
+the FFT-band one in `acoustic_ablation.json`. Table 4 quotes the FFT-band run, whose
+`完整系统 (14维)` row carries kNN, MLP, soft-vote and AUC together.
 
 ## Placing the data
 

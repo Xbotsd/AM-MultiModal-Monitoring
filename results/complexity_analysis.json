@@ -1,0 +1,67 @@
+{
+  "feature_extraction_ms": 0.6562950000000001,
+  "knn_inference_ms_per_sample_n500": 0.05247600000075181,
+  "knn_inference_ms_per_sample_n1000": 0.03046400000016547,
+  "knn_inference_ms_per_sample_n2000": 0.058116999999811014,
+  "mlp_inference_ms_per_sample": 0.00032343599999990147,
+  "kalman_fusion_ms_200steps_M1": 0.05924100000015642,
+  "kalman_fusion_ms_200steps_M2": 0.07999900000072557,
+  "kalman_fusion_ms_200steps_M3": 0.10538499999938722,
+  "mlp_params": {
+    "layer1": 960,
+    "layer2": 2080,
+    "layer3": 99,
+    "total": 3139
+  },
+  "knn_params": {
+    "n_train_samples": 1000,
+    "feature_dim": 14,
+    "total_floats": 14000
+  },
+  "peak_memory_MB_5000_samples": 1.1073989868164062,
+  "theoretical_complexity": {
+    "Kalman fusion": {
+      "time_complexity": "O(N · M)",
+      "space_complexity": "O(N)",
+      "N": "时间步数",
+      "M": "模态数"
+    },
+    "KNN inference": {
+      "time_complexity": "O(N_train · d)",
+      "space_complexity": "O(N_train · d)",
+      "N_train": "训练样本数",
+      "d": "特征维度"
+    },
+    "MLP forward": {
+      "time_complexity": "O(d · h1 + h1 · h2 + h2 · C)",
+      "space_complexity": "O(d·h1 + h1·h2 + h2·C)",
+      "h1, h2": "隐藏层神经元数",
+      "C": "类别数"
+    },
+    "SAFT (baseline)": {
+      "time_complexity": "O(N_e² · N_t · N_z)",
+      "space_complexity": "O(N_e² · N_t)",
+      "N_e": "阵元数",
+      "N_t": "采样点数",
+      "N_z": "成像点数",
+      "note": "传统合成孔径成像，计算量大"
+    },
+    "Traditional unwrap": {
+      "time_complexity": "O(P)",
+      "space_complexity": "O(P)",
+      "P": "像素数"
+    },
+    "Least-squares unwrap (DCT)": {
+      "time_complexity": "O(P log P)",
+      "space_complexity": "O(P)",
+      "P": "像素数",
+      "note": "DCT 加速"
+    },
+    "Proposed unwrap": {
+      "time_complexity": "O(P) + O(P log P)",
+      "space_complexity": "O(P)",
+      "note": "传统积分 + 卡尔曼残差 + 自学习平滑"
+    }
+  },
+  "end_to_end_latency_ms": 0.6583950000000001
+}

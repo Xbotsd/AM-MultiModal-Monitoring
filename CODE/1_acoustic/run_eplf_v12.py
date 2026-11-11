@@ -11,6 +11,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 os.chdir(ROOT_DIR)
 # ------------------------------
 
+import json
 import numpy as np
 import pywt
 from pathlib import Path
@@ -224,6 +225,50 @@ def main():
         total = np.sum(y_test == i)
         correct = cm[i][i]
         print(f"  {name:12s}: {correct}/{total} = {correct/total*100:.1f}%")
+
+    # ---- persist the hold-out metrics behind Table 4 ----
+    def auc_binary(y_true, score):
+        thresholds = np.sort(np.unique(score))[::-1]
+        P = np.sum(y_true == 1)
+        N = np.sum(y_true == 0)
+        tpr, fpr = [], []
+        for t in thresholds:
+            pred = (score >= t).astype(int)
+            tp = np.sum((pred == 1) & (y_true == 1))
+            fp = np.sum((pred == 1) & (y_true == 0))
+            tpr.append(tp / (P + 1e-10))
+            fpr.append(fp / (N + 1e-10))
+        fpr = np.array(fpr)
+        tpr = np.array(tpr)
+        order = np.argsort(fpr)
+        fpr, tpr = fpr[order], tpr[order]
+        return float(np.trapezoid(tpr, fpr) if hasattr(np, "trapezoid")
+                     else np.trapz(tpr, fpr))
+
+    names = ["LoF", "Conduction", "Keyhole"]
+    per_class_acc = {names[i]: float(cm[i][i] / max(cm[i].sum(), 1)) for i in range(3)}
+    macro_auc = float(np.mean([auc_binary((y_test == i).astype(int), ensemble_proba[:, i])
+                               for i in range(3)]))
+    metrics = {
+        "dataset": DATASET,
+        "n_per_class": MAX_PER_CLASS,
+        "n_test": int(len(y_test)),
+        "seed": 42,
+        "split": "80/20 hold-out, shuffled with seed 42",
+        "knn_accuracy": float(knn_acc),
+        "mlp_accuracy": float(mlp_acc),
+        "ensemble_accuracy": float(ensemble_acc),
+        "ensemble_rule": "0.5 * P(knn) + 0.5 * P(mlp), soft vote",
+        "per_class_accuracy": per_class_acc,
+        "macro_auc_ovr": macro_auc,
+        "confusion_matrix": cm.tolist(),
+    }
+    results_dir = Path("results")
+    results_dir.mkdir(parents=True, exist_ok=True)
+    with open(results_dir / "acoustic_holdout.json", "w", encoding="utf-8") as f:
+        json.dump(metrics, f, indent=1, ensure_ascii=False)
+    print(f"\n结果已保存: {results_dir / 'acoustic_holdout.json'}")
+    print(f"  macro AUC (one-vs-rest, ensemble): {macro_auc:.4f}")
 
 
 if __name__ == "__main__":

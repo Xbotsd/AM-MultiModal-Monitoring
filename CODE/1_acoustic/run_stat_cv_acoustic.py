@@ -21,7 +21,7 @@ from sklearn.metrics import precision_recall_fscore_support
 import json
 
 DATA_DIR = Path("data/epfl_acoustic/Deciphering AE")
-OUTPUT_DIR = Path("data/statistics")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 DATASET = "D1"
 N_CLASSES = 3

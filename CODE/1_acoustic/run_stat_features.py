@@ -20,7 +20,7 @@ from scipy.stats import f_oneway, kruskal
 import json
 
 DATA_DIR = Path("data/epfl_acoustic/Deciphering AE")
-OUTPUT_DIR = Path("data/statistics")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 DATASET = "D1"
 N_CLASSES = 3

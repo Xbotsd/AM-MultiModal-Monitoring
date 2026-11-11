@@ -1,6 +1,6 @@
 {
  "generated_by": "tools/scan_stages.py",
- "n_stages": 35,
+ "n_stages": 36,
  "modules": {
   "1_acoustic": "acoustic emission classification",
   "2_laser_ultrasound": "laser-ultrasound classification",
@@ -17,8 +17,7 @@
    "module": "acoustic emission classification",
    "summary": "声学模块消融实验 - FFT频带版（无pywt依赖）",
    "data_paths": [
-    "data/epfl_acoustic/Deciphering AE",
-    "data/output"
+    "data/epfl_acoustic/Deciphering AE"
    ],
    "uses_rng": true,
    "provenance": "measured",
@@ -30,8 +29,7 @@
    "module": "acoustic emission classification",
    "summary": "声学分类基线对比实验（修复版）",
    "data_paths": [
-    "data/epfl_acoustic/Deciphering AE",
-    "data/output"
+    "data/epfl_acoustic/Deciphering AE"
    ],
    "uses_rng": true,
    "provenance": "measured",
@@ -68,8 +66,7 @@
    "module": "acoustic emission classification",
    "summary": "声学模块 K折交叉验证 + P/R/F1",
    "data_paths": [
-    "data/epfl_acoustic/Deciphering AE",
-    "data/statistics"
+    "data/epfl_acoustic/Deciphering AE"
    ],
    "uses_rng": true,
    "provenance": "derived",
@@ -81,8 +78,7 @@
    "module": "acoustic emission classification",
    "summary": "声学特征显著性检验 (ANOVA + Kruskal-Wallis)",
    "data_paths": [
-    "data/epfl_acoustic/Deciphering AE",
-    "data/statistics"
+    "data/epfl_acoustic/Deciphering AE"
    ],
    "uses_rng": false,
    "provenance": "derived",
@@ -119,8 +115,7 @@
    "module": "laser-ultrasound classification",
    "summary": "激光超声 K折交叉验证 - 去除pywt依赖版",
    "data_paths": [
-    "data/laser_ultrasound",
-    "data/statistics"
+    "data/laser_ultrasound"
    ],
    "uses_rng": true,
    "provenance": "derived",
@@ -168,8 +163,7 @@
    "module": "multi-modal fusion",
    "summary": "全面敏感性分析",
    "data_paths": [
-    "data/laser_ultrasound/X_lu.npy",
-    "data/sensitivity"
+    "data/laser_ultrasound/X_lu.npy"
    ],
    "uses_rng": true,
    "provenance": "measured",
@@ -250,9 +244,7 @@
    "script": "CODE/6_visualization/run_complexity.py",
    "module": "statistics and figures",
    "summary": "复杂度分析 - 推理时间、参数规模、理论复杂度",
-   "data_paths": [
-    "data/complexity"
-   ],
+   "data_paths": [],
    "uses_rng": true,
    "provenance": "derived",
    "python": "python"
@@ -268,6 +260,16 @@
     "data/laser_ultrasound"
    ],
    "uses_rng": true,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
+   "stage": "6_visualization:run_design_rule",
+   "script": "CODE/6_visualization/run_design_rule.py",
+   "module": "statistics and figures",
+   "summary": "Design rule: the largest admissible voxel size for a target POD.",
+   "data_paths": [],
+   "uses_rng": false,
    "provenance": "derived",
    "python": "python"
   },
@@ -315,8 +317,7 @@
    "summary": "ROC/AUC 计算 - NumPy 2.0 兼容版",
    "data_paths": [
     "data/epfl_acoustic/Deciphering AE",
-    "data/laser_ultrasound",
-    "data/statistics"
+    "data/laser_ultrasound"
    ],
    "uses_rng": true,
    "provenance": "derived",
@@ -327,9 +328,7 @@
    "script": "CODE/6_visualization/run_stat_repeat.py",
    "module": "statistics and figures",
    "summary": "重复实验 + t检验 (10次不同随机种子)",
-   "data_paths": [
-    "data/statistics"
-   ],
+   "data_paths": [],
    "uses_rng": true,
    "provenance": "derived",
    "python": "python"
@@ -440,8 +439,7 @@
    "module": "root",
    "summary": "EPFL 跨子集验证 D1-D4",
    "data_paths": [
-    "data/epfl_acoustic/Deciphering AE",
-    "data/statistics"
+    "data/epfl_acoustic/Deciphering AE"
    ],
    "uses_rng": true,
    "provenance": "measured",

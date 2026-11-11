@@ -11,7 +11,7 @@ from scipy.stats import kurtosis as scipy_kurtosis, skew as scipy_skew
 import json
 
 DATA_DIR = Path("data/epfl_acoustic/Deciphering AE")
-OUTPUT_DIR = Path("data/statistics")
+OUTPUT_DIR = Path("results")
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 N_CLASSES = 3
 MAX_PER_CLASS = 500
