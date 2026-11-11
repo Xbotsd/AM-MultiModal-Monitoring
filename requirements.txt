@@ -4,3 +4,5 @@ matplotlib>=3.8
 scikit-learn>=1.4
 PyWavelets>=1.5
 pydicom>=2.4
+pandas>=2.0
+tifffile>=2023.7

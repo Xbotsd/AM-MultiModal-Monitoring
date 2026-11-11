@@ -8,9 +8,13 @@ and the decision layer.
 | | |
 |---|---|
 | upstream | https://github.com/Xbotsd/detectability-bound |
-| vendored at commit | `a652d04` |
+| vendored at commit | `81d99a2` |
 | version | 0.1.0 |
 | licence | MIT (see the upstream `LICENSE`) |
+
+The copy includes the `dbound` console entry point and the `bound` subcommand
+(`python -m dbound bound --a 100 --L 40`), so the decision layer can be exercised
+without the monitoring system around it.
 
 ## Why a copy and not a dependency
 

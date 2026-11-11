@@ -29,9 +29,9 @@ Sixty seconds:
 
 ```bash
 pip install -e .
-python -m ammonitor list        # 28 stages; a leading ! means data absent
+python -m ammonitor list        # 33 stages; a leading ! means data absent
 python -m ammonitor report      # what may be claimed, by provenance
-pytest -q                       # 18 passed
+pytest -q                       # 20 passed
 ```
 
 ## Architecture
@@ -82,10 +82,10 @@ is how many samples the event occupies rather than how fine the grid is.
 
 ```bash
 pip install -e .
-python -m ammonitor list          # 28 stages with provenance and data status
+python -m ammonitor list          # 33 stages with provenance and data status
 python -m ammonitor report        # what may be claimed, by category
 python -m ammonitor bound --a 100 --L 40 --dI-over-sigma 5
-pytest -q                         # 18 tests
+pytest -q                         # 20 tests
 ```
 
 `ammonitor list` marks stages whose declared input data are absent with `!`. Nothing
@@ -121,22 +121,27 @@ categories:
 
 | category | stages | may be cited as |
 |---|---|---|
-| `measured` | 7 | evidence about the process |
+| `measured` | 13 | evidence about the process |
 | `simulated` | 9 | evidence about the method only |
-| `derived` | 12 | neither; statistics and figures |
+| `derived` | 11 | neither; statistics and figures |
 
-The fusion and closed-loop control modules are simulation studies — they carry
-`np.random` seeds and no measured capture — and are labelled as such. Averaging them
-with the acoustic result into a single "system accuracy" is precisely the mistake
-`ammonitor report` exists to prevent. See `docs/PROVENANCE.md`.
+The simulated fusion, unwrapping, point-cloud and closed-loop control modules are
+simulation studies — they carry `np.random` seeds and no measured capture — and are
+labelled as such. The measured counterparts that produced the paper's fusion,
+unwrapping, height-map, graded-decision and clutter numbers are separate stages in
+`CODE/7_measured_real/`. Averaging a simulated result with a measured one into a
+single "system accuracy" is precisely the mistake `ammonitor report` exists to
+prevent. See `docs/PROVENANCE.md`.
 
 ## Repository layout
 
 ```
-CODE/                     the analysis scripts, unchanged (they produced the figures)
+CODE/                     the analysis scripts (unchanged where they produced figures)
+CODE/7_measured_real/     the real-data re-analyses of the fusion, unwrapping,
+                          height-map, graded-decision and clutter results
 src/ammonitor/            orchestration: registry, pipeline, decision, report, CLI
 src/dbound/               the detectability bound: E(x), d', inversion, real-data kappa
-tests/                    registry integrity, decision math, runner refusal
+tests/                    registry integrity, provenance/data coverage, decision math
 tools/                    stage scanner (generates stages.json), acoustic demo
 docs/                     architecture and provenance
 data/                     datasets are not committed; see data/README.md
@@ -152,8 +157,12 @@ it. A script cannot be added without the system noticing.
 |---|---|---|---|
 | EPFL acoustic emission | AE, 3 classes, 31 401 × 5 000 | 4.5 GB | [Zenodo 10449883](https://zenodo.org/records/10449883) |
 | Cranfield laser ultrasound | LUT, FMC array | 45 MB | [doi:10.17862/cranfield.rd.15190191](https://doi.org/10.17862/cranfield.rd.15190191) |
+| ORNL Peregrine coupons | 4 process channels + tensile test | 11 MB | [Zenodo 23727492](https://zenodo.org/records/23727492) |
+| Fringe projection | phase-stepped fringes + PUMA truth | 41 MB | [Zenodo 22125908](https://zenodo.org/records/22125908) |
+| WLI height maps | 4 DED tracks, 480 × ~20 000 px | 1.0 GB | [Zenodo 21285367](https://zenodo.org/records/21285367) |
+| XCT AlSi10Mg | 212 slices, 37 µm voxels | 127 MB | [Zenodo 17602110](https://zenodo.org/records/17602110) |
 
-Neither is committed. Place them under `data/` as described in `data/README.md`; the
+None is committed. Place them under `data/` as described in `data/README.md`; the
 registry tells you which stages need which.
 
 ## What this repository adds
@@ -165,8 +174,25 @@ registry tells you which stages need which.
 3. **An explicit claim partition** (`ammonitor report`): what is process evidence,
    what is method evidence, what is neither.
 
-The analysis scripts in `CODE/` are unchanged; that is deliberate, since they are what
-produced the published figures.
+The analysis scripts in `CODE/` are unchanged where they produced published figures;
+that is deliberate. The real-data re-analyses added for v1.1.0 sit beside them in
+`CODE/7_measured_real/` and write the result files the paper's tables are generated
+from.
+
+## Measured analyses added in v1.1.0
+
+Four of the paper's tables are computed from public captures that the v1.0.0 package
+mentioned only in prose. They are now stages, each with its dataset DOI in the
+docstring and its output in `results/`:
+
+| result | stage | reproduces |
+|---|---|---|
+| fusion | `7_measured_real:run_fusion_real` | RMSE 38.20 / 37.43 / 36.03 MPa; 302.30 and 512.67 build-held-out |
+| unwrapping | `7_measured_real:run_unwrap_real` | 0.532 mm over 6.2 mm; no refinement improves it |
+| height maps | `7_measured_real:run_pointcloud_real` | 2.9–5.0 µm robust deviation; no 10 µm window |
+| graded decision | `7_measured_real:run_decision_real` | AUC 0.751; 0.54–0.93 per build; enrichment 2.25 |
+| clutter κ | `7_measured_real:run_xct_clutter` | 24–125 across 1–16 voxels on the XCT stack |
+| spectral bound | `1_acoustic:run_ae_spectral` | 88.9 % ± 0.3 %; d′ 2.83–3.12 at 64 bands |
 
 ## Citation and licence
 

@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import argparse
+import math
 import json
 import pathlib
 import sys
@@ -40,6 +41,13 @@ def main(argv: list[str] | None = None) -> int:
     r.add_argument("--data-root", default="data")
     r.add_argument("--out", default="results")
 
+    b = sub.add_parser("bound", help="one bound from the command line, no data")
+    b.add_argument("--a", type=float, required=True, help="flaw diameter")
+    b.add_argument("--L", type=float, required=True, help="voxel or PSF width")
+    b.add_argument("--dI-over-sigma", type=float, default=5.0)
+    b.add_argument("--alpha", type=float, default=0.01)
+    b.add_argument("--pod-target", type=float, default=0.9)
+
     a = p.parse_args(argv)
 
     if a.cmd == "verify":
@@ -61,8 +69,23 @@ def main(argv: list[str] | None = None) -> int:
     elif a.cmd == "all":
         experiments.run_all(a.data_root, a.out)
         print(f"results written to {a.out}")
+    elif a.cmd == "bound":
+        x = a.a / a.L
+        e = bound.energy_at(max(x, bound.X_MIN))
+        req = bound.required_voxel(a.a, a.dI_over_sigma, 1.0, a.pod_target, a.alpha)
+        _dump({
+            "a": a.a, "L": a.L, "x": x,
+            "dprime": a.dI_over_sigma * math.sqrt(e),
+            "pod_bound": bound.pod_bound(a.dI_over_sigma, 1.0, x, a.alpha),
+            "voxel_max_for_target": req.voxel_max,
+            "energy_needed_for_target": (bound.z_from_p(a.pod_target)
+                                         + bound.z_from_p(1.0 - a.alpha)) ** 2
+                                        / a.dI_over_sigma ** 2,
+            "repeats_equal_halving_voxel": bound.repeats_to_match_resolution(2.0),
+        })
     return 0
 
 
 if __name__ == "__main__":
     sys.exit(main())
+

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ammonitor"
-version = "1.0.0"
+version = "1.1.0"
 description = "Integrated multi-modal in-situ monitoring for metal additive manufacturing, with a closed-form detectability bound"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -17,6 +17,9 @@ dependencies = [
   "PyWavelets>=1.5",
   "opencv-python>=4.8.0",
   "pydicom>=2.4",
+  "pandas>=2.0",
+  "scikit-learn>=1.4",
+  "tifffile>=2023.7",
 ]
 
 [project.optional-dependencies]

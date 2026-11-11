@@ -7,6 +7,12 @@
 into a tidy package would have changed what was run, which is exactly what a
 reproduction artefact must not do.
 
+Version 1.1.0 adds `CODE/7_measured_real/`: the real-data re-analyses of the fusion,
+unwrapping, height-map, graded-decision and clutter results that earlier existed only
+outside the repository. They follow the same convention — a docstring that names the
+dataset and its DOI, `data/...` paths, a JSON result in `results/` — and they are
+registered and tagged like every other stage.
+
 Instead the system wraps them:
 
 * `tools/scan_stages.py` reads `CODE/**/*.py`, extracts the docstring, the
@@ -26,12 +32,13 @@ registry cannot drift.
 
 | module | contents | provenance |
 |---|---|---|
-| `1_acoustic` | EPFL AE classification, baselines, ablation, statistics | measured |
+| `1_acoustic` | EPFL AE classification, baselines, ablation, spectral bound, statistics | measured |
 | `2_laser_ultrasound` | Cranfield LUT, label generation from geometry | measured |
 | `3_fusion` | Kalman fusion, combinations, sensitivity | simulated (except `run_sensitivity_full`) |
 | `4_phase_pointcloud` | phase unwrapping, point-cloud defect detection | simulated |
 | `5_control` | closed loop, edge diagnosis, control baselines | simulated |
 | `6_visualization` | ROC/AUC, confusion, t-SNE, figures | derived |
+| `7_measured_real` | fusion, unwrapping, height maps, graded decision, XCT clutter | measured |
 
 ### 2. Decision (`src/dbound/`, `ammonitor.decision`)
 
