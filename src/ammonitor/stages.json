@@ -1,6 +1,6 @@
 {
  "generated_by": "tools/scan_stages.py",
- "n_stages": 33,
+ "n_stages": 35,
  "modules": {
   "1_acoustic": "acoustic emission classification",
   "2_laser_ultrasound": "laser-ultrasound classification",
@@ -299,6 +299,16 @@
    "python": "python"
   },
   {
+   "stage": "6_visualization:run_ndte_figures",
+   "script": "CODE/6_visualization/run_ndte_figures.py",
+   "module": "statistics and figures",
+   "summary": "Draw the six figures of the integrated manuscript from the result files.",
+   "data_paths": [],
+   "uses_rng": false,
+   "provenance": "derived",
+   "python": "python"
+  },
+  {
    "stage": "6_visualization:run_roc_auc",
    "script": "CODE/6_visualization/run_roc_auc.py",
    "module": "statistics and figures",
@@ -375,6 +385,18 @@
    "python": "python"
   },
   {
+   "stage": "7_measured_real:run_lu_echo",
+   "script": "CODE/7_measured_real/run_lu_echo.py",
+   "module": "measured multi-source analyses",
+   "summary": "Laser-ultrasound echo detection against the detectability bound.",
+   "data_paths": [
+    "data/laser_ultrasound/201120_Ti_FMC_128ave.mat"
+   ],
+   "uses_rng": true,
+   "provenance": "measured",
+   "python": "python"
+  },
+  {
    "stage": "7_measured_real:run_pointcloud_real",
    "script": "CODE/7_measured_real/run_pointcloud_real.py",
    "module": "measured multi-source analyses",
@@ -404,7 +426,7 @@
    "stage": "7_measured_real:run_xct_clutter",
    "script": "CODE/7_measured_real/run_xct_clutter.py",
    "module": "measured multi-source analyses",
-   "summary": "Measured clutter inflation on the public X-ray CT stack.",
+   "summary": "Measured clutter inflation and detector comparison on the public CT stack.",
    "data_paths": [
     "data/xct/vol_gd"
    ],

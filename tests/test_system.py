@@ -53,7 +53,7 @@ def test_phase_unwrap_is_simulated_not_measured():
 
 def test_provenance_counts_are_the_documented_ones():
     counts = report.provenance_summary()
-    assert counts == {"measured": 13, "simulated": 9, "derived": 11}, counts
+    assert counts == {"measured": 14, "simulated": 9, "derived": 12}, counts
 
 
 def test_data_readme_covers_every_measured_stage():

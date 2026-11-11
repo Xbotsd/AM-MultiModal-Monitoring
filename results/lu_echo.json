@@ -1,0 +1,155 @@
+{
+ "n_pairs": 9220,
+ "W": 32,
+ "lag": 4,
+ "alpha": 0.01,
+ "window_us": 1.600000000000012,
+ "fit": {
+  "backwall": {
+   "coef_us": [
+    23.579927845285344,
+    0.16780196094116107,
+    6.227085997711702e-05,
+    3.9511613874745946e-05,
+    1.561121628105859e-06
+   ],
+   "resid_rms_us": 0.055018887312171104,
+   "inlier_frac": 0.5999134948096886
+  },
+  "late": {
+   "coef_us": [
+    41.491819717746985,
+    0.16661170731570352,
+    2.913457587870496e-05,
+    1.718231901329857e-05,
+    1.0287568691720497e-06
+   ],
+   "resid_rms_us": 0.06797184448067023,
+   "inlier_frac": 0.5999134948096886
+  }
+ },
+ "heldout_all": {
+  "n_pairs": 2306,
+  "descriptor_accuracy": 0.8818300086730269,
+  "descriptor_auc": 0.9473702224070999,
+  "energy_auc": 0.9267490290798392,
+  "matched_filter_auc": 0.8992984852667614,
+  "far": {
+   "energy": 0.008673026886383347,
+   "matched_filter": 0.012575888985255855,
+   "descriptor": 0.013876843018213356
+  }
+ },
+ "bw": {
+  "n": 1156,
+  "d_white": 16.39051387964077,
+  "kappa": 0.9939228719922453,
+  "d_eff": 16.490730157750765,
+  "pod_bound_white": 1.0,
+  "pod_bound_corrected": 1.0,
+  "pod_matched_filter": 0.08217993079584775,
+  "pod_energy": 0.02768166089965398,
+  "pod_descriptor": 0.8382352941176471,
+  "descriptor_auc": 0.9887917409992697,
+  "mf_auc": 0.9876528058811557
+ },
+ "late": {
+  "n": 1150,
+  "d_white": 6.046530367464849,
+  "kappa": 0.9767794349277642,
+  "d_eff": 6.190271980810088,
+  "pod_bound_white": 0.9999004605624651,
+  "pod_bound_corrected": 0.9999442100490343,
+  "pod_matched_filter": 0.1565217391304348,
+  "pod_energy": 0.0008695652173913044,
+  "pod_descriptor": 0.42695652173913046,
+  "descriptor_auc": 0.9063992438563329,
+  "mf_auc": 0.8235939508506616
+ },
+ "pod_vs_dprime": [
+  {
+   "dprime": [
+    0,
+    1
+   ],
+   "n": 596,
+   "pod_bound": 0.03835350940248054,
+   "pod_matched_filter": 0.0,
+   "mf_exceeds_bound_p": 1.0,
+   "pod_energy": 0.0,
+   "pod_descriptor": 0.38926174496644295
+  },
+  {
+   "dprime": [
+    1,
+    2
+   ],
+   "n": 334,
+   "pod_bound": 0.23988537002635146,
+   "pod_matched_filter": 0.0,
+   "mf_exceeds_bound_p": 1.0,
+   "pod_energy": 0.0,
+   "pod_descriptor": 0.437125748502994
+  },
+  {
+   "dprime": [
+    2,
+    3
+   ],
+   "n": 159,
+   "pod_bound": 0.5739892303858747,
+   "pod_matched_filter": 0.7169811320754716,
+   "mf_exceeds_bound_p": 0.00013681810532436257,
+   "pod_energy": 0.0,
+   "pod_descriptor": 0.5660377358490566
+  },
+  {
+   "dprime": [
+    3,
+    4
+   ],
+   "n": 46,
+   "pod_bound": 0.8009235574475386,
+   "pod_matched_filter": 0.9130434782608695,
+   "mf_exceeds_bound_p": 0.03425859558180387,
+   "pod_energy": 0.0,
+   "pod_descriptor": 0.5217391304347826
+  },
+  {
+   "dprime": [
+    4,
+    6
+   ],
+   "n": 37,
+   "pod_bound": 0.47884603296002126,
+   "pod_matched_filter": 0.4864864864864865,
+   "mf_exceeds_bound_p": 0.5275089965231877,
+   "pod_energy": 0.0,
+   "pod_descriptor": 0.5405405405405406
+  },
+  {
+   "dprime": [
+    6,
+    10
+   ],
+   "n": 205,
+   "pod_bound": 0.029268269201082737,
+   "pod_matched_filter": 0.02926829268292683,
+   "mf_exceeds_bound_p": 0.5567092367602384,
+   "pod_energy": 0.004878048780487805,
+   "pod_descriptor": 0.7365853658536585
+  },
+  {
+   "dprime": [
+    10,
+    null
+   ],
+   "n": 929,
+   "pod_bound": 0.11898777387982443,
+   "pod_matched_filter": 0.10226049515608181,
+   "mf_exceeds_bound_p": 0.9503609968706308,
+   "pod_energy": 0.03444564047362755,
+   "pod_descriptor": 0.8579117330462863
+  }
+ ]
+}
