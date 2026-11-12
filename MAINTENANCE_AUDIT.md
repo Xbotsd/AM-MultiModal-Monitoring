@@ -14,7 +14,7 @@
 
 | | AM | DB |
 |---|---|---|
-| 版本 | `1.1.4` | `0.1.1` |
+| 版本 | `1.1.5` | `0.1.1` |
 | 版本 DOI | concept `10.5281/zenodo.24128937` | `10.5281/zenodo.24136698` |
 | 阶段 / 测试 | 36 阶段（14/9/13），21 测试 | 11 测试 |
 | 数据 | **六源全部本地就位** | 三卷 XCT 本地 + manifest/fetch |
@@ -24,7 +24,7 @@
 ## 二、这一轮补完的缺口（2026-11-12）
 
 1. **XCT 三卷**：从 DB 的 `data/vol_gd|vol_g1|vol_g2` 复制 599 MB 到 AM 的
-   `data/xct/`；`run_xct_clutter` 重跑，κ 31.2→125.2、ablation 115.1/105.9/49.5、
+   `data/xct/`；`run_xct_clutter` 重跑，κ 23.3–125.2、ablation 115.1/105.9/49.5、
    POD 0.530/0.117/0.023，与已提交的 `results/xct_clutter.json` **完全一致**。
 2. **三份数据**：Peregrine（Zenodo 23727492，11 MB CSV）、fringe（22125908，
    39 MB）、WLI（21285367，208 MB）下载并按约定布局放置；四个 real 阶段重跑，

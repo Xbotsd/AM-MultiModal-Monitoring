@@ -219,7 +219,7 @@ docstring and its output in `results/`:
 | unwrapping | `7_measured_real:run_unwrap_real` | 0.532 mm over 6.2 mm; no refinement improves it |
 | height maps | `7_measured_real:run_pointcloud_real` | 2.9–5.0 µm robust deviation; no 10 µm window |
 | graded decision | `7_measured_real:run_decision_real` | AUC 0.751; 0.54–0.93 per build; enrichment 2.25 |
-| clutter κ | `7_measured_real:run_xct_clutter` | 24–125 across 1–16 voxels; 0.530/0.117/0.023 detector PODs |
+| clutter κ | `7_measured_real:run_xct_clutter` | 23–125 across 1–16 voxels; 0.530/0.117/0.023 detector PODs |
 | spectral bound | `1_acoustic:run_ae_spectral` | 88.9 % ± 0.3 %; d′ 2.83–3.12 at 64 bands |
 | laser-ultrasound echo | `7_measured_real:run_lu_echo` | d′ 16.4 / 6.0; κ 0.99 / 0.98; POD 0.838 / 0.427 |
 | design rule | `6_visualization:run_design_rule` | Table 1 reproduced to the digit |

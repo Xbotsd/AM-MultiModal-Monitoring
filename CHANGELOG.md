@@ -3,6 +3,14 @@
 All notable changes to this repository. Versions follow the deposited Zenodo
 records; the concept DOI `10.5281/zenodo.24128937` always resolves to the latest.
 
+## [1.1.5] — 2026-11-12
+
+### Fixed
+- The documentation quoted the clutter range as 24–125; the measured series runs from
+  **23.3** (at three voxels) to 125.2. README, architecture note and this audit now say
+  23–125. The manuscript, highlights, cover letter and graphical abstract were
+  corrected in the same pass. No code change.
+
 ## [1.1.4] — 2026-11-12
 
 ### Fixed

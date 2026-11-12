@@ -68,7 +68,7 @@ event must occupy.
 
 `src/dbound/realdata.py` adds the correction that real imaging demands: the noise a
 matched filter sees is not the voxel noise but the clutter, and the ratio
-`κ = 24…125` is measured on public XCT data rather than assumed.
+`κ = 23…125` is measured on public XCT data rather than assumed.
 
 ### 3. Report (`ammonitor.report`)
 
