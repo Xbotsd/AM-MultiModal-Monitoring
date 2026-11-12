@@ -3,6 +3,15 @@
 All notable changes to this repository. Versions follow the deposited Zenodo
 records; the concept DOI `10.5281/zenodo.24128937` always resolves to the latest.
 
+## [1.1.6] — 2026-11-12
+
+### Changed
+- Added `results/subset_cv.json` and `tools/compute_subset_cv.py`, the reproducible
+  source of the per-subset five-fold row in the Measurement manuscript.
+- Retired the orphan `results/cross_subset_epfl.json`, which no stage generated and
+  whose values did not reproduce; the required-result test now asks for the new file.
+- No functional change to the measurement chain.
+
 ## [1.1.5] — 2026-11-12
 
 ### Fixed
