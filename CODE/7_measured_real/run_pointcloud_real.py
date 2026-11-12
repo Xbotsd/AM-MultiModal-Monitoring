@@ -3,7 +3,8 @@
 Data: Zenodo 10.5281/zenodo.21285367 (CC BY 4.0), ``height_maps.zip`` from the NSF
 Future Manufacturing Data Challenge: white-light interferometry of real SS316L
 directed-energy-deposition single tracks, 480 x ~20 000 px at 3.982 um.  Place the
-four ``.ASC`` maps at ``data/hm/Heightmap_{8,10,14,21}.ASC``.
+four ``.ASC`` maps at ``data/hm/Heightmap_8.ASC``, ``data/hm/Heightmap_10.ASC``,
+``data/hm/Heightmap_14.ASC`` and ``data/hm/Heightmap_21.ASC``.
 
 The chain is the one described for the geometric module: the nominal track
 cross-section (the column-wise median, since the section is constant along the
@@ -32,13 +33,6 @@ NAMES = ("Heightmap_8", "Heightmap_14", "Heightmap_10", "Heightmap_21")
 PIXEL_UM = 3.982
 WINDOW_PX = 64
 THRESHOLDS_MM = (0.010, 0.020)
-
-
-def resolve(data_root: Path, rel: str) -> Path:
-    rel = rel.replace("\\", "/")
-    if rel.startswith("data/"):
-        rel = rel[len("data/"):]
-    return Path(data_root) / rel
 
 
 def read_asc(path: Path):
@@ -72,7 +66,7 @@ def main() -> int:
 
     out = {}
     for name in NAMES:
-        path = resolve(Path(args.data_root), f"data/hm/{name}.ASC")
+        path = Path(args.data_root) / "hm" / f"{name}.ASC"
         if not path.exists():
             raise SystemExit(f"missing input: {path}")
         z, px = read_asc(path)

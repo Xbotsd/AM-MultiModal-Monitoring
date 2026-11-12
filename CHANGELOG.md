@@ -3,6 +3,17 @@
 All notable changes to this repository. Versions follow the deposited Zenodo
 records; the concept DOI `10.5281/zenodo.24128937` always resolves to the latest.
 
+## [1.1.3] — 2026-11-12
+
+### Fixed
+- `run_pointcloud_real` declared its inputs as the template `data/hm/{name}.ASC`, so the
+  readiness check marked the stage as missing data even when the four maps were in
+  place. The four paths are now declared explicitly and the stage builds them without a
+  path template.
+- `ammonitor list` now shows no `!` on a complete data tree; `ammonitor chain measured`
+  runs 12/12 stages against all six public datasets and reproduces every committed
+  result file byte for byte.
+
 ## [1.1.2] — 2026-11-11
 
 ### Changed
