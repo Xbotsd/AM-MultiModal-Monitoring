@@ -3,6 +3,15 @@
 All notable changes to this repository. Versions follow the deposited Zenodo
 records; the concept DOI `10.5281/zenodo.24128937` always resolves to the latest.
 
+## [1.1.4] — 2026-11-12
+
+### Fixed
+- 1.1.3 declared the four height maps in the docstring only; the registry reads quoted
+  literals, so the stage ended up with no declared inputs and the readiness guard went
+  silent. The paths are now a literal tuple in the script, the registry lists all four,
+  and `ammonitor list` shows no `!` on a complete tree while still flagging an
+  incomplete one.
+
 ## [1.1.3] — 2026-11-12
 
 ### Fixed

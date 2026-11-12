@@ -400,7 +400,12 @@
    "script": "CODE/7_measured_real/run_pointcloud_real.py",
    "module": "measured multi-source analyses",
    "summary": "Measured surface-height maps through the geometric monitoring chain.",
-   "data_paths": [],
+   "data_paths": [
+    "data/hm/Heightmap_10.ASC",
+    "data/hm/Heightmap_14.ASC",
+    "data/hm/Heightmap_21.ASC",
+    "data/hm/Heightmap_8.ASC"
+   ],
    "uses_rng": false,
    "provenance": "measured",
    "python": "python"

@@ -29,10 +29,22 @@ import pandas as pd
 from scipy import ndimage as ndi
 
 ROOT = Path(__file__).resolve().parents[2]
-NAMES = ("Heightmap_8", "Heightmap_14", "Heightmap_10", "Heightmap_21")
+# Literal paths, so the stage registry treats the four maps as required inputs.
+PATHS = (
+    "data/hm/Heightmap_8.ASC",
+    "data/hm/Heightmap_14.ASC",
+    "data/hm/Heightmap_10.ASC",
+    "data/hm/Heightmap_21.ASC",
+)
 PIXEL_UM = 3.982
 WINDOW_PX = 64
 THRESHOLDS_MM = (0.010, 0.020)
+
+
+def resolve(data_root: Path, rel: str) -> Path:
+    if rel.startswith("data/"):
+        rel = rel[len("data/"):]
+    return Path(data_root) / rel
 
 
 def read_asc(path: Path):
@@ -65,8 +77,9 @@ def main() -> int:
     args = ap.parse_args()
 
     out = {}
-    for name in NAMES:
-        path = Path(args.data_root) / "hm" / f"{name}.ASC"
+    for rel in PATHS:
+        name = Path(rel).stem
+        path = resolve(Path(args.data_root), rel)
         if not path.exists():
             raise SystemExit(f"missing input: {path}")
         z, px = read_asc(path)
