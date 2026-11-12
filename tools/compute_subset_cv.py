@@ -14,7 +14,7 @@ import pathlib
 
 import numpy as np
 
-ROOT = pathlib.Path(__file__).resolve().parents[2]
+ROOT = pathlib.Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location(
     "v12", ROOT / "CODE" / "1_acoustic" / "run_eplf_v12.py")
 v12 = importlib.util.module_from_spec(SPEC)
