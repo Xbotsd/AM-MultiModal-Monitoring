@@ -65,7 +65,7 @@ def test_committed_results_are_present_and_parse():
     """
     required = [
         "ae_d1.json", "ae_spectral.json", "acoustic_holdout.json",
-        "acoustic_ablation.json", "cv_acoustic.json", "cross_subset_epfl.json",
+        "acoustic_ablation.json", "cv_acoustic.json", "subset_cv.json",
         "roc_auc.json", "cv_laser_ultrasound.json", "complexity_analysis.json",
         "sensitivity_full.json", "design_rule.json", "decision_real.json",
         "fusion_real.json", "lu_echo.json", "pointcloud_real.json", "unwrap_real.json",
